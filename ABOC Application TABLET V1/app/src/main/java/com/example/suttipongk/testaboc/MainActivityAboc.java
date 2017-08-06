@@ -1,0 +1,92 @@
+package com.example.suttipongk.testaboc;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.example.suttipongk.util.FirebaseNotificationUtil;
+import com.example.suttipongk.util.QRCodeUtil;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Locale;
+
+/**
+ * Created by TOPPEE on 7/19/2017.
+ */
+
+public class MainActivityAboc extends AppCompatActivity implements TextToSpeech.OnInitListener {
+    MediaPlayer ourSong;
+
+    //Initial Text to Speech
+    private TextToSpeech tts;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        startService(new Intent(this,FacePredictionService.class));
+
+        //Initial Text to Speech
+        tts = new TextToSpeech(this, this, "com.google.android.tts");
+
+        ourSong = MediaPlayer.create(MainActivityAboc.this, R.raw.intentsuccess);               //Sound
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean music = getPrefs.getBoolean("checkbox",true);
+        if(music == true)
+            ourSong.start();
+
+        Thread timer = new Thread(){
+            public void run(){
+                try{
+                    sleep(5000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }finally{
+                    Intent openStartingPoint = new Intent(getApplicationContext(),MainActivityLogin.class);
+                    startActivity(openStartingPoint);
+                }
+            }
+        };
+        timer.start();
+    }
+
+    //Initial Text to Speech
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ourSong.release();
+        finish();
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(new Locale("th"));
+            tts.speak("สวัสดี เราอาร์บ๊อก", TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/voicerecognitionwallpaperpng"
+    android:layout_centerInParent="true">
+
+    <Button android:id="@+id/btn_raw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Open epub from raw"/>
+
+    <Button android:id="@+id/btn_assest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/btn_raw"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Open epub assests"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabEpubOpenControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:src="@android:drawable/ic_menu_more"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/btn_assest"
+        android:layout_alignEnd="@+id/btn_assest"
+        android:layout_marginBottom="32dp" />
+
+</RelativeLayout>
