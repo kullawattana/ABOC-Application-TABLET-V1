@@ -48,6 +48,7 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
         mHelpLiveo.add(getString(R.string.facedetection), R.drawable.ic_star_black_24dp);
         mHelpLiveo.add(getString(R.string.documents), R.drawable.ic_star_black_24dp);
         mHelpLiveo.add(getString(R.string.scanpaper), R.drawable.ic_star_black_24dp);
+        mHelpLiveo.add(getString(R.string.iot), R.drawable.ic_star_black_24dp);
         mHelpLiveo.add(getString(R.string.sent_mail), R.drawable.ic_send_black_24dp);
 
         with(this).startingPosition(2)                                                          //Starting position in the list
@@ -104,6 +105,10 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
                         Log.i("spokenText","scan paper");
                         Intent mainActivityScanPaper = new Intent(getApplicationContext(),MainActivityScanPaper.class);			//เปิด Scan Paper
                         startActivity(mainActivityScanPaper);
+                    } else if(spokenText.equals("ไอโอที") || spokenText.equals("IOT")){
+                        Log.i("spokenText","iot");
+                        Intent androidIOTWebviewActivity = new Intent(getApplicationContext(),AndroidIOTWebviewActivity.class);			//IOT
+                        startActivity(androidIOTWebviewActivity);
                     }
                 }
                 break;

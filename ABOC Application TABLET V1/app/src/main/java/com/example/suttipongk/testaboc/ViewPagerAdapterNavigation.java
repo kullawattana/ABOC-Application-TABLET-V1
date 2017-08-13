@@ -45,6 +45,9 @@ public class ViewPagerAdapterNavigation extends FragmentPagerAdapter {
             case 3:
                 TabFragment4 tab4 = new TabFragment4();         //PAGE4
                 return tab4;
+            case 4:
+                TabFragment5 tab5 = new TabFragment5();         //PAGE5
+                return tab5;
             default:
                 return null;
         }
