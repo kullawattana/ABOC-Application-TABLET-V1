@@ -271,7 +271,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         } else
                             Log.i(TAG, "Loaded cascade classifier from " + mCascadeFile.getAbsolutePath());
 
-                        //mNativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
+                        mNativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
 
                         if(mNativeDetector == null)
                             Log.e("Detector", "1: Null");
