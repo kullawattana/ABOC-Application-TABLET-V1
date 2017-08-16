@@ -73,18 +73,11 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     //OPEN CV READ PDF
     private static final Scalar    FACE_RECT_COLOR     = new Scalar(0, 255, 0, 255);
-    private static final Scalar    BG_COLOR            = new Scalar(255, 255, 255, 255);
     private static final Scalar    RED				   = new Scalar(255,0,0,255);
     private static final Scalar    PINK                = new Scalar(255,153,204,255);
     private static final Scalar    LIGHT_BLUE          = new Scalar(95, 204, 245, 255);
     public static final int        JAVA_DETECTOR       = 0;
     public static final int        NATIVE_DETECTOR     = 1;
-
-    private MenuItem               mItemFace50;
-    private MenuItem               mItemFace40;
-    private MenuItem               mItemFace30;
-    private MenuItem               mItemFace20;
-    private MenuItem               mItemType;
 
     private Mat                    mRgba;
     private Mat                    mGray;
@@ -100,9 +93,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     private CameraBridgeViewBase   mOpenCvCameraView;
 
-    private int                    xOfBall            = 640;
-    private int                    yOfBall            = 400;
-    private int                    rate                = 5;
     private Mat                    mResult;
     private int                    learn_frames_l        = 0;
     private int                    learn_frames_r        = 0;
@@ -113,8 +103,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private int                    numOfER               = 0;
     private int                    positionM             = 0;
     private int                    numOfM                = 0;
-    private int					   avgNumOfMask			 = 0;
-    private int					   countNumOfMask		 = 0;
     private boolean				   isSmile               = false;
     private int					   smileCount			 = 0;
     private boolean				   isLeft               = false;
@@ -126,9 +114,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
     private int                    match_valueR;
     private int                    match_valueL;
     private int                    match_valueM;
-    private Mat                    mZoomCorner;
-    private Mat                    mZoomWindow;
-    private Mat                    mZoomWindow2;
 
     // Matching methods
     private static final int       TM_SQDIFF           = 0;
@@ -155,6 +140,15 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
     Button rematch;
     int currentPage = 1;
 
+    //load Cascade classifier ของรูปหน้าทั้งหมดมาจาก XML ของ OpenCV
+
+	/*
+	Example
+	-Frontal Face
+	stump 24x24, 20x20gentle, 20x20tree
+	-Profile Face (20x20)
+	*/
+
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
 
         @Override
@@ -165,9 +159,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 case LoaderCallbackInterface.SUCCESS:
                 {
                     Log.i(TAG, "OpenCV loaded successfully");
-
-                    // Load native library after(!) OpenCV initialization
-                    System.loadLibrary("detection_based_tracker");
 
                     try {
                         // load cascade file from application resources
@@ -196,9 +187,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                             oser.write(bufferER, 0, bytesReadER);
                         }
                         iser.close();
-
                         oser.close();
-                        //----------------------------------------------------------------------------------------------------
 
                         // --------------------------------- load left eye classificator ------------------------------------
                         InputStream isel = getResources().openRawResource(R.raw.haarcascade_lefteye_2splits);
@@ -213,16 +202,14 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         }
                         isel.close();
                         osel.close();
-                        //----------------------------------------------------------------------------------------------------
                         Log.d(TAG, "Before mount");
+
                         // --------------------------------- load mount classificator ------------------------------------
                         InputStream ism = getResources().openRawResource(R.raw.mouth);
                         File cascadeDirM = getDir("cascadeM", Context.MODE_PRIVATE);
                         File cascadeFileM = new File(cascadeDirM, "haarcascade_mcs_mount.xml");
                         FileOutputStream osm = new FileOutputStream(cascadeFileM);
-
                         Log.d(TAG, "After Connect file");
-
                         byte[] bufferM = new byte[4096];
                         int bytesReadM;
                         Log.d(TAG, "Before read input stream");
@@ -231,7 +218,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         }
                         ism.close();
                         osm.close();
-                        //----------------------------------------------------------------------------------------------------
                         Log.d(TAG, "After mount");
 
                         mJavaDetector = new CascadeClassifier(mCascadeFile.getAbsolutePath());
@@ -263,7 +249,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
                         if (mJavaDetector.empty()|| mCascadeER.empty() || mCascadeEL.empty() || mCascadeM.empty() ) {
                             Log.e(TAG, "Failed to load cascade classifier");
-
                             mJavaDetector = null;
                             mCascadeER=null;
                             mCascadeEL=null;
@@ -271,7 +256,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         } else
                             Log.i(TAG, "Loaded cascade classifier from " + mCascadeFile.getAbsolutePath());
 
-                        mNativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
+                        //mNativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
 
                         if(mNativeDetector == null)
                             Log.e("Detector", "1: Null");
@@ -316,17 +301,12 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     // Used to load the 'native-lib' library on application startup.
     static {
-        System.loadLibrary("native-lib");
         System.loadLibrary("opencv_java");
         System.loadLibrary("detection_based_tracker");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //**************************START TEST OPEN CV****************************************
-//        setContentView(R.layout.activity_main);
-//        initViews();
-        //**************************END TEST OPEN CV****************************************
 
         //Initial Text to Speech
         tts = new TextToSpeech(this, this, "com.google.android.tts");
@@ -340,17 +320,17 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.fd_activity_surface_view);
         mOpenCvCameraView.setCvCameraViewListener(this);
+
+        //*******************************************เลือก PDF แล้วกำหนดไว้ที่หน้าแรก*******************************************
         button = (Button)findViewById(R.id.chooseButton);
         button.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Log.w("zoom", "zoom :"+pdfView.getZoom());
                 new FileChooser(ac).setFileListener(new FileSelectedListener() {
 
                     public void fileSelected(File file) {
-                        // TODO Auto-generated method stub
                         pdfFile = file;
                         Log.w("DIR", "choosed : "+pdfFile.getName());
                         currentPage = 1;
@@ -359,12 +339,13 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 }).showDialog();
             }
         });
+
+        //*******************************************Rematching คือ Set ทุกอย่างที่กำหนดไว้ให้ Learn เป็น 0*******************************************
         rematch = (Button)findViewById(R.id.rematch);
         rematch.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 learn_frames_l = 0;
                 learn_frames_m = 0;
                 learn_frames_r = 0;
@@ -376,6 +357,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     }
 
+    //*******************************************Camera Disable*******************************************
     @Override
     public void onPause()
     {
@@ -384,12 +366,11 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
             mOpenCvCameraView.disableView();
     }
 
+    //*******************************************Load OPENCV Library*******************************************
     @Override
     public void onResume()
     {
         super.onResume();
-//        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);
-//        mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_9, this, mLoaderCallback);
@@ -404,7 +385,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         mOpenCvCameraView.disableView();
     }
 
-    //*************************************************************INIT*********************************************
+    //*******************************************ใส่ Seekbar เพื่อเพิ่มคุณภาพของรูป ตรงนี้ไม่มีในระบบ*******************************************
     private Bitmap increaseBrightness(Bitmap bitmap, int value){
         Mat src = new Mat(bitmap.getHeight(),bitmap.getWidth(), CvType.CV_8UC1);
         Utils.bitmapToMat(bitmap,src);
@@ -431,6 +412,8 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
     @Override
     public void onPageChanged(int page, int pageCount) {}
 
+
+    //*******************************************Overide Camera***************************************************
     @Override
     public void onCameraViewStarted(int i, int i1) {
         mGray = new Mat();
@@ -455,9 +438,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
             Log.d("Mat", "width : "+mGray.width());
             Log.d("Mat", "height : "+mGray.height());
 
-
-            //setWhiteBG(mRgba);
-
+            //*******************************************เริ่มต้น get RGBA/GRAY****************************************************
             if (mAbsoluteFaceSize == 0) {
                 int height = mGray.rows();
                 if (Math.round(height * mRelativeFaceSize) > 0) {
@@ -470,59 +451,48 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                 mNativeDetector.setMinFaceSize(mAbsoluteFaceSize);
             }
 
+            //*******************************************สร้างกรอบล้อมรอบหน้ากับปาก***************************************************
             MatOfRect faces = new MatOfRect();
-            MatOfRect mounts = new MatOfRect();//mount
-            //mJavaDetector == mCascadeM
+            MatOfRect mounts = new MatOfRect();         //mount
 
             mJavaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2, // TODO: objdetect.CV_HAAR_SCALE_IMAGE
                     new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
-            //      mCascadeM.detectMultiScale(mGray, mounts, 1.1, 2, 2, // TODO: objdetect.CV_HAAR_SCALE_IMAGE
-            //              new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());// mount
-
 
             Rect biggestFace = null;
             Rect[] facesArray = faces.toArray();
 
-
+            //*******************************************นับจำนวนจุดบนใบหน้า********************************************************
             if(facesArray.length != 0){
                 biggestFace = facesArray[0].clone();
                 for (int i = 0; i < facesArray.length; i++){
-                    //Core.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
                     if(facesArray[i].size().height > biggestFace.size().height){
                         biggestFace = facesArray[i].clone();
                     }
                 }
 
+                //*******************************************ความสูงของรูปหน้ามากกว่า 100****************************************************
                 if(biggestFace.size().height > 100){
                     Log.d("RectArray", biggestFace.toString());
                     Core.rectangle(mRgba, biggestFace.tl(), biggestFace.br(), FACE_RECT_COLOR, 3);
 
-                    //updateRedBall(biggestFace);
-                    //eyearea = new Rect(biggestFace.x +biggestFace.width/8,(int)(biggestFace.y + (biggestFace.height/3.5)),biggestFace.width - 2*biggestFace.width/8,(int)( biggestFace.height/4.0));
-
-
-                    // split it
+                    //split it แบ่งพื้นที่
                     Rect eyearea_right = new Rect(biggestFace.x +biggestFace.width/16,(int)(biggestFace.y + (biggestFace.height/3.5)),(biggestFace.width - 2*biggestFace.width/16)/2,(int)( biggestFace.height/4.0));
                     Rect eyearea_left = new Rect(biggestFace.x +biggestFace.width/16 +(biggestFace.width - 2*biggestFace.width/16)/2,(int)(biggestFace.y + (biggestFace.height/3.5)),(biggestFace.width - 2*biggestFace.width/16)/2,(int)( biggestFace.height/4.0));
                     Rect mouthArea = new Rect((biggestFace.x+biggestFace.width/6) ,(int)(biggestFace.y + (biggestFace.height*2/3)),(biggestFace.width*4/6),(int)( biggestFace.height/3));
 
-                    //new Rect(x, y, width, height)
+                    //*******************************************สร้างกรอบ new Rect(x, y, width, height)*******************************************
                     // draw the area - mGray is working grayscale mat, if you want to see area in rgb preview, change mGray to mRgba
                     Core.rectangle(mRgba,eyearea_left.tl(),eyearea_left.br() , FACE_RECT_COLOR, 2);
                     Core.rectangle(mRgba,eyearea_right.tl(),eyearea_right.br() , FACE_RECT_COLOR, 2);
                     Core.rectangle(mRgba,mouthArea.tl(),mouthArea .br() , LIGHT_BLUE, 2);
 
-
-
-                    //detact mounth opened
+                    //********************************************************จับจุดที่ปาก***********************************************************
                     Rect toothArea = new Rect((biggestFace.x+biggestFace.width/3) ,(int)(biggestFace.y + (biggestFace.height*2/3)),(biggestFace.width/3),(int)( biggestFace.height/3));
                     Core.rectangle(mRgba, toothArea.tl(), toothArea.br(), PINK, 3);
                     Mat toothMat= mGray.submat(toothArea).clone();
 
-                    Point centerOfToothTL = new Point(toothArea.tl().x+(toothArea.width/2)-(toothArea.width/16),
-                            toothArea.tl().y+(toothArea.height/2)-(toothArea.height/16));
-                    Point centerOfToothBR = new Point(toothArea.br().x-(toothArea.width/2)+(toothArea.width/16),
-                            toothArea.br().y-(toothArea.height/2)+(toothArea.height/16));
+                    Point centerOfToothTL = new Point(toothArea.tl().x+(toothArea.width/2)-(toothArea.width/16), toothArea.tl().y+(toothArea.height/2)-(toothArea.height/16));
+                    Point centerOfToothBR = new Point(toothArea.br().x-(toothArea.width/2)+(toothArea.width/16), toothArea.br().y-(toothArea.height/2)+(toothArea.height/16));
                     Rect toothCenter = new Rect(centerOfToothTL, centerOfToothBR);
                     Mat toothCenterMat= mGray.submat(toothCenter).clone();
                     Core.rectangle(mRgba, centerOfToothTL,centerOfToothBR , RED);
@@ -535,34 +505,19 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                     Core.rectangle(mRgba, centerOfToothTL,centerOfToothBR , RED);
                     for(int i = 0 ; i < toothCenterMat.height();i++){
                         for(int j = 0; j < toothCenterMat.width();j++){
-		        		/*
-		        		avgLight += toothCenterMat.get(i, j)[0];
-		        		//normal X
-		        		double value = 0.0;
-		        		value = (-1/16.0)*toothCenterMat.get(i, j)[0];
-		        		value += (1/16)*toothCenterMat.get(i, j+1)[0];
-		        		*/
                             Scalar tmpColor = new Scalar(0,0,0);
-
                             if(toothCenterMat.get(i, j)[0] > 100){
                                 Core.circle(mRgba, new Point(toothCenter.x+j, toothCenter.y+i), 2, tmpColor, 1);
                                 unmask++;
                             }
-                            //Log.d("normal value", ""+value);
-		        		/*
-		        		Point centerOfToothTL = new Point(toothArea.tl().x+(toothArea.width/2)-(toothArea.width/20),
-								toothArea.tl().y+(toothArea.height/2)-(toothArea.height/20));
-		        		Point centerOfToothBR = new Point(toothArea.br().x-(toothArea.width/2)+(toothArea.width/20),
-								toothArea.br().y-(toothArea.height/2)+(toothArea.height/20));
-		        		Core.rectangle(mRgba, centerOfToothTL,centerOfToothBR , RED);
-		        		*/
                         }
                     }
+
+                    //*********************************************ฟัน******************************************************
                     int numOfTooth = toothCenterMat.height()*toothCenterMat.width();
-                    //avgNumOfMask = ((avgNumOfMask*countNumOfMask)+unmask)/(++countNumOfMask);
                     Log.d("unmask", ""+unmask+"   "+numOfTooth+"    "+((double)unmask/(double)numOfTooth));
-                    //if(unmask+numOfTooth*0.06 < numOfTooth){
-                    //if(unmask < avgNumOfMask){
+
+                    //*******************************************จับการยิ้ม****************************************************
                     if((double)unmask/(double)numOfTooth > 0.2){
                         if(isSmile && smileCount >= 5){
                             Core.rectangle(mRgba, new Point(50, 50), new Point(500, 500), LIGHT_BLUE,10);
@@ -576,9 +531,10 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         smileCount = 0;
                     }
 
-
+                    //*******************************************ขนาดของตา**************************************************
                     int eyeSize = (int)(biggestFace.size().height/14);
 
+                    //**********************************************ตาขวา*****************************************************
                     if(learn_frames_r<LEARNING_RATE ){
                         teplateR = getEyeTemplate(mCascadeER,eyearea_right,eyeSize);
                         if(teplateR.width() != 0)
@@ -590,10 +546,11 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         Log.d("position", "Position of ER : "+positionER);
                         Log.d("eye width", "Right : "+eyearea_right.width);
                     }else{
-                        match_valueR = match_eye(eyearea_right,teplateR,1,FACE_RECT_COLOR); //Or hardcode method you needs eg TM_SQDIFF_NORMED
+                        match_valueR = match_eye(eyearea_right,teplateR,1,FACE_RECT_COLOR);         //Or hardcode method you needs eg TM_SQDIFF_NORMED
                         Log.d("match value", "Right eye: "+match_valueR);
                     }
 
+                    //*********************************************ตาซ้าย****************************************************
                     if(learn_frames_l<LEARNING_RATE ){
                         teplateL = getEyeTemplate(mCascadeEL,eyearea_left,eyeSize);
                         if(teplateL.width() != 0)
@@ -605,10 +562,11 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         Log.d("position", "Position of EL : "+positionEL);
                         Log.d("eye width", "Left : "+eyearea_left.width);
                     }else{
-                        match_valueL = match_eye(eyearea_left,teplateL,1,FACE_RECT_COLOR); //Or hardcode method you needs eg TM_SQDIFF_NORMED
+                        match_valueL = match_eye(eyearea_left,teplateL,1,FACE_RECT_COLOR);          //Or hardcode method you needs eg TM_SQDIFF_NORMED
                         Log.d("match value", "left eye: "+match_valueL);
                     }
 
+                    //*********************************************ปาก****************************************************
                     if(learn_frames_m<LEARNING_RATE ){
                         teplateM = getMountTemplate(mCascadeM,mouthArea);
                         if(teplateM.width() != 0)
@@ -620,67 +578,61 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                         Log.d("position", "Position of M : "+positionM);
                         Log.d("mount width", "mount : "+mouthArea.width);
                     }else{
-                        match_valueM = match_eye(mouthArea,teplateM,1,FACE_RECT_COLOR); //Or hardcode method you needs eg TM_SQDIFF_NORMED
+                        match_valueM = match_eye(mouthArea,teplateM,1,FACE_RECT_COLOR);             //Or hardcode method you needs eg TM_SQDIFF_NORMED
                         Log.d("match value", "mount: "+match_valueM);
                     }
 
+                    //************************คำนวณตำแหน่งของปาก***************************
                     int centerOfMouthX = match_valueM;
                     int centerOfToothX = toothCenter.x+(toothCenter.width/2);
                     int diffOfX = centerOfToothX-centerOfMouthX;
-                    Log.w("move", "tooth - mouth in X:  "+diffOfX+"    "+centerOfToothX+
-                            "    "+centerOfMouthX);
+                    Log.w("move", "tooth - mouth in X:  "+diffOfX+"    "+centerOfToothX+ "    "+centerOfMouthX);
+
+                    //*********************เรียกการอ่าน PDF จากการขยับปาก*********************
                     if(diffOfX >= 140){
                         Log.w("move", "Left    "+diffOfX);
                         if(isLeft && leftCount == 5){
-                            //alert
                             Log.w("move", "--------------left----------------"+pdfFile.getName());
-                            display(pdfFile, --currentPage);
+                            display(pdfFile, --currentPage);        //Page ก่อนหน้า
                             leftCount++;
                         }else if(isLeft){
                             leftCount++;
-
                         }else{
                             leftCount++;
                             RightCount = 0;
                             isLeft = true;
                             isRight = false;
                         }
-                    }else if(diffOfX <= 120){
+                    }else if(diffOfX <= 60){
                         Log.w("move", "Right   "+diffOfX);
                         if(isRight && RightCount == 5){
-                            //alert
                             Log.w("move", "--------------Right---------------"+pdfFile.getName());
-                            display(pdfFile, ++currentPage);
+                            display(pdfFile, ++currentPage);        //Page ถัดไป
                             RightCount++;
                         }else if(isRight){
                             RightCount++;
-
                         }else{
                             RightCount++;
                             leftCount = 0;
                             isRight = true;
                             isLeft = false;
                         }
-                    }else{
+                    }else{      //ถ้าหน้าตรง ปากนิ่ง ให้ Set Boolean เป็น False แล้ว Int เป็น 0 ให้หมด
                         RightCount = 0;
                         leftCount = 0;
                         isRight = false;
                         isLeft = false;
                     }
-
                 }
-
             }
         }catch(Exception e){
             Log.e(TAG, e.getMessage());
         }
-        //Core.circle(mRgba, new Point(xOfBall, yOfBall), 25, RED, 50);
         return mRgba;
     }
 
     //**********************************************************************MATCH EYE WITH TEMPLATE***********************************************************************
     private int  match_eye(Rect area, Mat mTemplate,int type, Scalar color){
-        //Core.rectangle(mRgba, area.br(), area.tl(), PINK);
         Point matchLoc;
         Mat mROI = mGray.submat(area);
         int result_cols =  mROI.cols() - mTemplate.cols() + 1;
@@ -727,14 +679,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Point  matchLoc_ty = new Point(matchLoc.x + mTemplate.cols() + area.x , matchLoc.y + mTemplate.rows()+area.y );
 
         Core.rectangle(mRgba, matchLoc_tx,matchLoc_ty, color);
-        //Log.d("eye","x value : "+matchLoc_tx.x );
-    	/*
-    	if(type == TM_SQDIFF || type == TM_SQDIFF_NORMED)
-    	{ return mmres.maxVal; }
-    	else
-    	{ return mmres.minVal; }
-    	 */
-        //return matchLoc_tx.x;
         return (int)(matchLoc.x+(mTemplate.width()/2));
     }
 
@@ -746,50 +690,36 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Point iris = new Point();
         Rect eye_template = new Rect();
         clasificator.detectMultiScale(mROI, eyes, 1.15, 2,Objdetect.CASCADE_FIND_BIGGEST_OBJECT|Objdetect.CASCADE_SCALE_IMAGE, new Size(30,30),new Size());
-        //clasificator.detectMultiScale(mROI, eyes);
-        //clasificator.detectMultiScale(image, objects, scaleFactor, minNeighbors, flags, minSize, maxSize);
         Rect[] eyesArray = eyes.toArray();
+
         for (int i = 0; i < eyesArray.length; i++){
             Rect e = eyesArray[i];
             e.x = area.x + e.x;
             e.y = area.y + e.y;
-            //Core.rectangle(mRgba, e.tl(), e.br(), RED, 3);
-            //return mRgba.submat(e).clone();
-
             Rect eye_only_rectangle = new Rect((int)e.tl().x,(int)( e.tl().y + e.height*0.4),(int)e.width,(int)(e.height*0.6));
-            //Core.rectangle(mRgba, eye_only_rectangle.tl(), eye_only_rectangle.br(), PINK, 2);
 
             // reduce ROI
             mROI = mGray.submat(eye_only_rectangle);
             Mat vyrez = mRgba.submat(eye_only_rectangle);
-            // return vyrez.clone();
-
-            // find the darkness point
-            Core.MinMaxLocResult mmG = Core.minMaxLoc(mROI);
-            // draw point to visualise pupil
-            Core.circle(vyrez, mmG.minLoc,2, new Scalar(255, 255, 255, 255),2);
-
+            Core.MinMaxLocResult mmG = Core.minMaxLoc(mROI);                            // find the darkness point
+            Core.circle(vyrez, mmG.minLoc,2, new Scalar(255, 255, 255, 255),2);         // draw point to visualise pupil
             iris.x = mmG.minLoc.x + eye_only_rectangle.x;
             iris.y = mmG.minLoc.y + eye_only_rectangle.y;
             eye_template = new Rect((int)iris.x-size/2,(int)iris.y-size/2 ,size,size);
             Core.rectangle(mRgba,eye_template.tl(),eye_template.br(),new Scalar(255, 0, 0, 255), 2);
-            // copy area to template
-            template = (mGray.submat(eye_template)).clone();
+            template = (mGray.submat(eye_template)).clone();    // copy area to template
             return template;
         }
+
         return template;
     }
 
     private Mat  getMountTemplate(CascadeClassifier clasificator, Rect area){
-        //Core.rectangle(mRgba, area.br(), area.tl(), PINK, 10);
         Mat template = new Mat();
         Log.d("Template :","width"+template.width());
         Mat mROI = mGray.submat(area);
         MatOfRect eyes = new MatOfRect();
-
         clasificator.detectMultiScale(mROI, eyes, 1.15, 2,Objdetect.CASCADE_FIND_BIGGEST_OBJECT|Objdetect.CASCADE_SCALE_IMAGE, new Size(30,30),new Size());
-        //clasificator.detectMultiScale(mROI, eyes);
-        //clasificator.detectMultiScale(image, objects, scaleFactor, minNeighbors, flags, minSize, maxSize);
         Rect[] eyesArray = eyes.toArray();
         for (int i = 0; i < eyesArray.length; i++){
             Rect e = eyesArray[i];
@@ -812,6 +742,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         return true;
     }
 
+    //*******************************************************************setMinFaceSize*******************************************************************
     private void setMinFaceSize(float faceSize) {
         mRelativeFaceSize = faceSize;
         mAbsoluteFaceSize = 0;
@@ -839,10 +770,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         Log.w("DIR", "can read : "+pdfFile.canRead());
         Log.w("zoom", "zoom :"+pdfView.getZoom());
         pdfView.recycle();
-        pdfView.fromFile(pdfFile)
-                .defaultPage(page)
-                .onPageChange(this)
-                .load();
+        pdfView.fromFile(pdfFile).defaultPage(page).onPageChange(this).load();
         Log.w("zoom", "zoom :"+pdfView.getZoom());
         pdfView.zoomTo((float)2.38);
         Log.w("zoom", "zoom :"+pdfView.getZoom());
@@ -850,11 +778,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     private void display() {
         //pdfFile = new File("/storage/emulated/0/Download/summary.pdf");
-        pdfView.fromAsset("summary.pdf")
-                .defaultPage(1)
-                .onPageChange(this)
-                .load();
-
+        pdfView.fromAsset("summary.pdf").defaultPage(1).onPageChange(this).load();
     }
 
     private void changePage(File pdfFile,int page) {
@@ -863,16 +787,13 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         //pdfFile = new File("/storage/emulated/0/Download/summary.pdf");
         Log.w("zoom", "zoom :"+pdfView.getZoom());
         pdfView.zoomTo((float)2.38);
-        pdfView.fromFile(pdfFile)
-                .defaultPage(page)
-                .onPageChange(this)
-                .load();
+        pdfView.fromFile(pdfFile).defaultPage(page).onPageChange(this).load();
         Log.w("zoom", "zoom :"+pdfView.getZoom());
         pdfView.zoomTo((float)2.38);
         Log.w("zoom", "zoom :"+pdfView.getZoom());
     }
 
-    //Initial Text to Speech
+    //***********************************************************************Initial Text to Speech***********************************************************************
     @Override
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
