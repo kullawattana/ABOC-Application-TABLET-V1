@@ -682,7 +682,6 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
         return (int)(matchLoc.x+(mTemplate.width()/2));
     }
 
-    //
     private Mat  getEyeTemplate(CascadeClassifier clasificator, Rect area,int size){
         Mat template = new Mat();
         Log.d("Template :","width"+template.width());
