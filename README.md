@@ -62,3 +62,9 @@
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/IOT_CONTROL_ABOC.jpg)
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Notification_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Page_Fall_Detection_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Profile_Fall_Detection_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Notification_Firebase_Service_ABOC.jpg)
