@@ -33,8 +33,6 @@
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_NAVIGATION_ABOC.jpg)
 
-![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_NAVIGATION_ABOC.jpg)
-
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/ABOC_Book_Machine.jpg)
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Book%20Machine.jpeg)
