@@ -21,6 +21,20 @@
 
 ## Screenshots on Mobile
 
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_HOME_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/LOGIN_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/LOGIN_GOOGLE_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/SERVICE_FIREBASE_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_NAVIGATION_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_NAVIGATION_ABOC.jpg)
+
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/ABOC_Book_Machine.jpg)
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Book%20Machine.jpeg)
@@ -35,6 +49,18 @@
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Voice_Recognition_ABOC.jpg)
 
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_Voice_Recognition_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Voice_Recognition_Read_Book_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Voice_Recognition_Menu_Reading_Book_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/PAGE_SCAN_BOOK_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Scan_Book_Menu_ABOC.jpg)
+
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/IOT_PAGE_ABOC.jpg)
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/IOT_CONTROL_ABOC.jpg)
+
+![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Notification_ABOC.jpg)
