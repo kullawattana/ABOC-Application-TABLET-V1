@@ -15,6 +15,7 @@
         <string name="scanpaper">Scan Paper</string>
         <string name="sent_mail">Sent Mail</string>
         <string name="iot">Internet of Things</string>
+        <string name="fall_detection">Fall Detection</string>
         <string name="categories">Categories</string>
         <string name="settings">Settings E-Book</string>
         <string name="add">Add</string>

@@ -131,6 +131,12 @@
             android:screenOrientation="landscape">
         </activity>
 
+        <!-- Data of Firebase -->
+        <activity
+            android:name=".MainFirebaseReadDataActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
         <activity
             android:name=".MainActivityScanPaper"
             android:screenOrientation="landscape"

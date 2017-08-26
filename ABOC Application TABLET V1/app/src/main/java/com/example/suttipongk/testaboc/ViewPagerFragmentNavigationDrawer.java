@@ -31,6 +31,7 @@ public class ViewPagerFragmentNavigationDrawer extends Fragment {
         mTabs.add(new TabPagerItem(getString(R.string.documents), MainFragmentNavigationDrawer.newInstance(getString(R.string.documents))));
         mTabs.add(new TabPagerItem(getString(R.string.scanpaper), MainFragmentNavigationDrawer.newInstance(getString(R.string.scanpaper))));
         mTabs.add(new TabPagerItem(getString(R.string.iot), MainFragmentNavigationDrawer.newInstance(getString(R.string.iot))));
+        mTabs.add(new TabPagerItem(getString(R.string.fall_detection), MainFragmentNavigationDrawer.newInstance(getString(R.string.fall_detection))));
     }
 
     @Override

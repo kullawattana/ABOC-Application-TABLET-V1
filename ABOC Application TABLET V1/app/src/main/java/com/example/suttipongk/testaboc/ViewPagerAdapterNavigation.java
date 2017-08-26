@@ -34,20 +34,23 @@ public class ViewPagerAdapterNavigation extends FragmentPagerAdapter {
 
         switch (i) {
             case 0:
-                TabFragment1 tab1 = new TabFragment1();         //PAGE1
+                TabFragment1 tab1 = new TabFragment1();         //PAGE1     //ABOC Machine
                 return tab1;
             case 1:
-                TabFragment2 tab2 = new TabFragment2();         //PAGE2
+                TabFragment2 tab2 = new TabFragment2();         //PAGE2     //Face Detection
                 return tab2;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();         //PAGE3
+                TabFragment3 tab3 = new TabFragment3();         //PAGE3     //Ebook-EPUB
                 return tab3;
             case 3:
-                TabFragment4 tab4 = new TabFragment4();         //PAGE4
+                TabFragment4 tab4 = new TabFragment4();         //PAGE4     //Scan Book
                 return tab4;
             case 4:
-                TabFragment5 tab5 = new TabFragment5();         //PAGE5
+                TabFragment5 tab5 = new TabFragment5();         //PAGE5     //IOT Humidity
                 return tab5;
+            case 5:
+                TabFragment6 tab6 = new TabFragment6();         //PAGE6     //IOT Fall Detection
+                return tab6;
             default:
                 return null;
         }
