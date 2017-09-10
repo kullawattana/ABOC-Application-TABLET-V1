@@ -1,7 +1,9 @@
 package com.example.suttipongk.testaboc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -53,12 +55,28 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
       listView.setAdapter(valuesAdapter);
       listView.setOnItemClickListener(itemClickListener);
 
+      doTheAutoRefresh();
+
       Firebase.setAndroidContext(this);
       myFirebaseRef = new Firebase("https://aboc-afe9a.firebaseio.com");
       myFirebaseRef.addChildEventListener(childEventListener);
 
       save.setOnClickListener(this);
   }
+
+    //********************************Handle Message Time Thread***************************************
+    private final Handler handler = new Handler();
+
+    private void doTheAutoRefresh() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                myFirebaseRef = new Firebase("https://aboc-afe9a.firebaseio.com");
+                myFirebaseRef.addChildEventListener(childEventListener);
+                doTheAutoRefresh();
+            }
+        }, 20000);
+    }
 
   private void showProgressBar(){
       InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -113,7 +131,7 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
         } else {
           for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
             FirebaseQueryProfile post = postSnapshot.getValue(FirebaseQueryProfile.class);
-            keyAndValue = post.getName() + " " + post.getSurname() + " " + post.getAddress() + " " + post.getTel() + " " + post.getEmailAddress() + " " + post.getTakeCareType() + " " + post.getTimeFallDetection();
+            keyAndValue = post.getMyname() + " " + post.getSurname() + " " + post.getAddress() + " " + post.getTel() + " " + post.getEmailAddress() + " " + post.getTakeCareType() + " " + post.getTimeFallDetection();
           }
         }
 
@@ -136,11 +154,15 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
 
       @Override
       public void onChildRemoved(DataSnapshot dataSnapshot) {
-        String deletedKey = dataSnapshot.getKey();
-        int removedIndex = keysArray.indexOf(deletedKey);
-        keysArray.remove(removedIndex);
-        displayArray.remove(removedIndex);
-        updateListView();
+            String deletedKey = dataSnapshot.getKey();
+            int removedIndex = keysArray.indexOf(deletedKey);
+            keysArray.remove(removedIndex);
+            displayArray.remove(removedIndex);
+
+          //********************************Remove Handle Message Time Thread***************************************
+            handler.removeCallbacksAndMessages(null);
+
+            updateListView();
       }
 
       @Override

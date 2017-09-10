@@ -7,6 +7,7 @@ package com.example.suttipongk.testaboc;
 public class FirebaseQueryProfile {
 
     public String name;                 //ชื่อ
+    public String myname;               //ชื่อจริง
     public String surname;              //นามสกุล
     public String address;              //ที่อยู่
     public String tel;                  //เบอร์โทร
@@ -23,6 +24,14 @@ public class FirebaseQueryProfile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMyname() {
+        return myname;
+    }
+
+    public void setMyname(String myname) {
+        this.myname = myname;
     }
 
     public String getSurname() {

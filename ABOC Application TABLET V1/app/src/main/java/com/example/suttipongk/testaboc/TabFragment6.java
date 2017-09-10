@@ -3,6 +3,7 @@ package com.example.suttipongk.testaboc;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,12 +55,12 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.elderlybutton:
                 mCallback.showToast("Hello from Fragment 6.1");
-                Intent mainSaveAndReadDataFirebase = new Intent(getContext(),MainFirebaseReadDataActivity.class);
+                Intent mainSaveAndReadDataFirebase = new Intent(getContext(), MainFirebaseReadDataActivity.class);
                 startActivity(mainSaveAndReadDataFirebase);
                 break;
             case R.id.elderlybutton2:
                 mCallback.showToast("Hello from Fragment 6.2");
-                Intent mainActivityUpdateAndDeleteFirebaseData = new Intent(getContext(),MainActivityUpdateAndDeleteFirebaseData.class);
+                Intent mainActivityUpdateAndDeleteFirebaseData = new Intent(getContext(), MainActivityUpdateAndDeleteFirebaseData.class);
                 startActivity(mainActivityUpdateAndDeleteFirebaseData);
                 break;
         }

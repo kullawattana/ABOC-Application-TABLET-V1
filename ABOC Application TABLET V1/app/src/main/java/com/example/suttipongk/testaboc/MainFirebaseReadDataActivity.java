@@ -81,7 +81,8 @@ public class MainFirebaseReadDataActivity extends ActionBarActivity implements V
 
         //SET DATA TO MODEL CLASS
         FirebaseQueryProfile s = new FirebaseQueryProfile();
-                s.setName(database.child(nameEditText.getText().toString()).push().getKey());
+                s.setName(database.child(nameEditText.getText().toString()).push().getKey());       //Key Database
+                s.setMyname(nameEditText.getText().toString());
                 s.setSurname(surnameEditText.getText().toString());
                 s.setAddress(addressEditText.getText().toString());
                 s.setTel(telEditText.getText().toString());
