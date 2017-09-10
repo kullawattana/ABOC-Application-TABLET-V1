@@ -589,11 +589,13 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                     Log.w("move", "tooth - mouth in X:  "+diffOfX+"    "+centerOfToothX+ "    "+centerOfMouthX);
 
                     //*********************เรียกการอ่าน PDF จากการขยับปาก*********************
-                    if(diffOfX >= 140){
+                    if(diffOfX >= 100){
                         Log.w("move", "Left    "+diffOfX);
+                        Log.w("move", "isLeft : "+isLeft + "leftCount :"+leftCount);
+                        
                         if(isLeft && leftCount == 5){
                             Log.w("move", "--------------left----------------"+pdfFile.getName());
-                            display(pdfFile, --currentPage);        //Page ก่อนหน้า
+                            display(pdfFile, ++currentPage);        //Page ก่อนหน้า
                             leftCount++;
                         }else if(isLeft){
                             leftCount++;
@@ -603,11 +605,11 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                             isLeft = true;
                             isRight = false;
                         }
-                    }else if(diffOfX <= 60){
+                    }else if(diffOfX <= 100){
                         Log.w("move", "Right   "+diffOfX);
                         if(isRight && RightCount == 5){
                             Log.w("move", "--------------Right---------------"+pdfFile.getName());
-                            display(pdfFile, ++currentPage);        //Page ถัดไป
+                            display(pdfFile, --currentPage);        //Page ถัดไป
                             RightCount++;
                         }else if(isRight){
                             RightCount++;
