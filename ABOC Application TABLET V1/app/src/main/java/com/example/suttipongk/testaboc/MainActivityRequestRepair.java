@@ -193,7 +193,7 @@ public class MainActivityRequestRepair extends AppCompatActivity implements Adap
 
 		//ส่ง FCM ไปที่สำนักงานขายของ ABOC
 		FirebaseNotificationUtil firebaseNotificationUtil = new FirebaseNotificationUtil();           //>>>> ส่ง Notification ไปที่เครื่อง User
-		firebaseNotificationUtil.pushFCMNotification(reqNumber, tokenId, authKeyFcm, apiUrlFcm, queueNo, nameAndSurname, tel, email, office, date);
+		//firebaseNotificationUtil.pushFCMNotification(reqNumber, tokenId, authKeyFcm, apiUrlFcm, queueNo, nameAndSurname, tel, email, office, date);
 
 	}
 

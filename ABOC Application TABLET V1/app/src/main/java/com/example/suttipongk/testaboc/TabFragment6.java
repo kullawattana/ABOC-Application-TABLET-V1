@@ -16,12 +16,20 @@ import android.widget.Toast;
 public class TabFragment6 extends Fragment implements View.OnClickListener {
     private IFragmentToActivity mCallback;
     private ImageButton btnFtoA;
+    private ImageButton btnFtoB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment_6, container, false);
+
+        //Add >>> Data
         btnFtoA = (ImageButton) view.findViewById(R.id.elderlybutton);
         btnFtoA.setOnClickListener(this);
+
+        //Select / Update / Delete >>> Data
+        btnFtoB = (ImageButton) view.findViewById(R.id.elderlybutton2);
+        btnFtoB.setOnClickListener(this);
+
         return view;
     }
 
@@ -41,21 +49,18 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
         super.onDetach();
     }
 
-    public void onRefresh() {
-        Toast.makeText(getActivity(), "Fragment 6: Refresh called.", Toast.LENGTH_SHORT).show();
-    }
-
-    public void fragmentCommunication() {
-
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.elderlybutton:
-                mCallback.showToast("Hello from Fragment 6");
+                mCallback.showToast("Hello from Fragment 6.1");
                 Intent mainSaveAndReadDataFirebase = new Intent(getContext(),MainFirebaseReadDataActivity.class);
                 startActivity(mainSaveAndReadDataFirebase);
+                break;
+            case R.id.elderlybutton2:
+                mCallback.showToast("Hello from Fragment 6.2");
+                Intent mainActivityUpdateAndDeleteFirebaseData = new Intent(getContext(),MainActivityUpdateAndDeleteFirebaseData.class);
+                startActivity(mainActivityUpdateAndDeleteFirebaseData);
                 break;
         }
     }

@@ -129,6 +129,25 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
 
             default:
                 mFragment = MainFragmentNavigationDrawer.newInstance(mHelpLiveo.get(position).getName());
+                if(mHelpLiveo.get(position).getName().equals("Speech Recognition")){
+                    Intent act1 = new Intent(getApplicationContext(),Homepage.class);
+                    startActivity(act1);
+                } else if(mHelpLiveo.get(position).getName().equals("Face Detection")){
+                    Intent act2 = new Intent(getApplicationContext(),FdActivity.class);
+                    startActivity(act2);
+                } else if(mHelpLiveo.get(position).getName().equals("Voice Recognition")){
+                    Intent act3 = new Intent(getApplicationContext(),HomeActivity.class);
+                    startActivity(act3);
+                } else if(mHelpLiveo.get(position).getName().equals("Scan Paper")){
+                    Intent act4 = new Intent(getApplicationContext(),MainActivityScanPaper.class);
+                    startActivity(act4);
+                } else if(mHelpLiveo.get(position).getName().equals("Internet of Things")){
+                    Intent act5 = new Intent(getApplicationContext(),AndroidIOTWebviewActivity.class);
+                    startActivity(act5);
+                } else if(mHelpLiveo.get(position).getName().equals("Fall Detection")){
+                    Intent act6 = new Intent(getApplicationContext(),MainFirebaseReadDataActivity.class);
+                    startActivity(act6);
+                }
                 break;
         }
 
