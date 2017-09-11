@@ -19,11 +19,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainFirebaseReadDataActivity extends ActionBarActivity implements View.OnClickListener{
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
 
-  static final String TAG = "MainFirebaseReadDataActivity";
+public class MainActivityFirebaseReadDataActivity extends ActionBarActivity implements View.OnClickListener{
+
+  static final String TAG = "MainActivityFirebaseReadDataActivity";
   static Firebase myFirebaseRef;
 
   Button save;

@@ -7,6 +7,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class AndroidIOTWebviewActivity extends AppCompatActivity {
     /** Called when the activity is first created. */
     @Override

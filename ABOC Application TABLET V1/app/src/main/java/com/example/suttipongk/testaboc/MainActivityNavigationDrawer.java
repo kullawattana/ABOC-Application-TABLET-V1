@@ -3,14 +3,12 @@ package com.example.suttipongk.testaboc;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -145,7 +143,7 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
                     Intent act5 = new Intent(getApplicationContext(),AndroidIOTWebviewActivity.class);
                     startActivity(act5);
                 } else if(mHelpLiveo.get(position).getName().equals("Fall Detection")){
-                    Intent act6 = new Intent(getApplicationContext(),MainFirebaseReadDataActivity.class);
+                    Intent act6 = new Intent(getApplicationContext(),MainActivityFirebaseReadDataActivity.class);
                     startActivity(act6);
                 }
                 break;

@@ -8,6 +8,9 @@ import io.realm.RealmBaseAdapter;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
 
 public class RealmModelAdapter<T extends RealmObject> extends RealmBaseAdapter<T> {
 

@@ -133,13 +133,13 @@
 
         <!-- Data of Firebase -->
         <activity
-            android:name=".MainFirebaseReadDataActivity"
+            android:name=".MainActivityFirebaseReadDataActivity"
             android:screenOrientation="landscape">
         </activity>
 
         <!-- Update Data of Firebase -->
         <activity
-            android:name=".MainActivityUpdateAndDeleteFirebaseData"
+            android:name=".MainActivityUpdateNotificationFallDetectionFirebaseData"
             android:screenOrientation="landscape">
         </activity>
 

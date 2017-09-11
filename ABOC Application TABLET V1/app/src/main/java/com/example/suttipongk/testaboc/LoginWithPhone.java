@@ -26,6 +26,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class LoginWithPhone extends AppCompatActivity implements View.OnClickListener {
 	private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
 

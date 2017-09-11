@@ -22,8 +22,9 @@ import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 
 /**
- * Created by prisarn on 10/5/2016.
+ * Created by TOPPEE on 9/11/2017.
  */
+
 public class ImageUtil {
     public static Bitmap resizeBmp(Bitmap orgBmp, int newWidth, int newHeight) {
 

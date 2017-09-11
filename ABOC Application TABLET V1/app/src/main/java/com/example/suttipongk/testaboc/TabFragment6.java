@@ -3,13 +3,11 @@ package com.example.suttipongk.testaboc;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 /**
  * Created by TOPPEE on 7/23/2017.
@@ -54,14 +52,19 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.elderlybutton:
-                mCallback.showToast("Hello from Fragment 6.1");
-                Intent mainSaveAndReadDataFirebase = new Intent(getContext(), MainFirebaseReadDataActivity.class);
+                mCallback.showToast("Firebase Read Data");
+                Intent mainSaveAndReadDataFirebase = new Intent(getContext(), MainActivityFirebaseReadDataActivity.class);
                 startActivity(mainSaveAndReadDataFirebase);
                 break;
             case R.id.elderlybutton2:
-                mCallback.showToast("Hello from Fragment 6.2");
+                mCallback.showToast("Update And Delete Firebase Data");
                 Intent mainActivityUpdateAndDeleteFirebaseData = new Intent(getContext(), MainActivityUpdateAndDeleteFirebaseData.class);
                 startActivity(mainActivityUpdateAndDeleteFirebaseData);
+                break;
+            case R.id.elderlybutton3:
+                mCallback.showToast("Update Notification Fall Detection Firebase Data");
+                Intent mainActivityUpdateNotificationFallDetectionFirebaseData = new Intent(getContext(), MainActivityUpdateNotificationFallDetectionFirebaseData.class);
+                startActivity(mainActivityUpdateNotificationFallDetectionFirebaseData);
                 break;
         }
     }

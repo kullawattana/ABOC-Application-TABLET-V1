@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class ManageUserActivity extends BaseActivity implements View.OnClickListener {
 	private static final String TAG = "ManageUserActivity";
 	private EditText mEditTextName, mEditTextPhoto, mEditTextEmail, mEditTextPassword, mEditTextEmailReset;

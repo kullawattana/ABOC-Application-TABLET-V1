@@ -4,6 +4,10 @@ package com.example.suttipongk.testaboc;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class Prefs {
 
     private static final String PRE_LOAD = "preLoad";

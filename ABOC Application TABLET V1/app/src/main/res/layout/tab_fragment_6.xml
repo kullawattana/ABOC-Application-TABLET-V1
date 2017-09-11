@@ -26,6 +26,15 @@
             android:layout_weight="1"
             android:background="@null"
             app:srcCompat="@drawable/update_icon_resize" />
+
+        <ImageButton
+            android:id="@+id/elderlybutton3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            app:srcCompat="@drawable/notification_flat" />
+
     </LinearLayout>
 
 </RelativeLayout>

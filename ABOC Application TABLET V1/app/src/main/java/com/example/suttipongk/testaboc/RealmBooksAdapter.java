@@ -1,11 +1,11 @@
 package com.example.suttipongk.testaboc;
 
 import android.content.Context;
-
-import com.example.suttipongk.testaboc.Book;
-import com.example.suttipongk.testaboc.RealmModelAdapter;
-
 import io.realm.RealmResults;
+
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
 
 public class RealmBooksAdapter extends RealmModelAdapter<Book> {
 

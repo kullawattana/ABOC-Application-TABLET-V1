@@ -33,6 +33,10 @@ import com.google.firebase.auth.FirebaseUser;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class LoginFacebook extends BaseActivity implements View.OnClickListener {
 	private static final String TAG = "LoginFacebook";
 	private CallbackManager mCallbackManager;

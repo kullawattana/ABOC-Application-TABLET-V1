@@ -20,8 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 /**
- * Activity to demonstrate anonymous login and account linking (with an email/password account).
+ * Created by TOPPEE on 9/11/2017.
  */
+
 public class LoginOtherAccount extends BaseActivity implements View.OnClickListener {
 	private static final String TAG = "AnonymousAuth";
 	private FirebaseAuth mAuth;

@@ -3,6 +3,10 @@ package com.example.suttipongk.testaboc;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class BaseActivity extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
 

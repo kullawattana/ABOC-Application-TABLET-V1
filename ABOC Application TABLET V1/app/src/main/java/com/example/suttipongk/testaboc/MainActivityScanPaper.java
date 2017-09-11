@@ -18,13 +18,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
 
 public class MainActivityScanPaper extends ActionBarActivity {
 
@@ -38,7 +39,7 @@ public class MainActivityScanPaper extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activityscanimage_main);
+        setContentView(R.layout.activity_scan_image_main);
         init();
 
         //Main Speech Recognition-------------------------------------------------------------------

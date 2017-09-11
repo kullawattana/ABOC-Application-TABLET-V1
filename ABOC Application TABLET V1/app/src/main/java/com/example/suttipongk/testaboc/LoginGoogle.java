@@ -37,6 +37,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
+
 public class LoginGoogle extends BaseActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 	private static final String TAG = "LoginGoogle";
 	private static final int RC_SIGN_IN = 9001;

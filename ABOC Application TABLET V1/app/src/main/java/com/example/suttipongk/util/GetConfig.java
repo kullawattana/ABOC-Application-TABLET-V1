@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Created by newdev01 on 12/21/2016.
+ * Created by TOPPEE on 9/11/2017.
  */
 
 public class GetConfig {

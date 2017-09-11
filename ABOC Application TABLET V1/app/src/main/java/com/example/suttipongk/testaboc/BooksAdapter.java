@@ -12,17 +12,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-
-import com.example.suttipongk.testaboc.Prefs;
-import com.example.suttipongk.testaboc.Book;
-import com.example.suttipongk.testaboc.RealmController;
-import com.example.suttipongk.testaboc.R;
-import com.example.suttipongk.testaboc.RealmRecyclerViewAdapter;
-
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+/**
+ * Created by TOPPEE on 9/11/2017.
+ */
 
 public class BooksAdapter extends RealmRecyclerViewAdapter<Book> {
 
