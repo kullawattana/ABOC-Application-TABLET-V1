@@ -3,6 +3,7 @@ package com.example.suttipongk.testaboc;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -21,12 +22,13 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by TOPPEE on 9/11/2017.
  */
 
-public class MainActivityUpdateNotificationFallDetectionFirebaseData extends ActionBarActivity implements View.OnClickListener{
+public class MainActivityUpdateNotificationFallDetectionFirebaseData extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
       static Firebase myFirebaseRef;
       ProgressBar progressBar;
@@ -35,6 +37,9 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
       ArrayList<String> displayArray;
       ArrayList<String> keysArray;
       ListView listView;
+
+    private TextToSpeech tts;
+//    protected static final int RESULT_SPEECH = 1;
 
       @Override
       protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,8 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
           Firebase.setAndroidContext(this);
           myFirebaseRef = new Firebase("https://aboc-afe9a.firebaseio.com");
           myFirebaseRef.addChildEventListener(childEventListener);
+
+          tts = new TextToSpeech(this, this, "com.google.android.tts");
       }
 
         //********************************Handle Message Time Thread***************************************
@@ -114,17 +121,24 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
                   //Data
                   keyAndValue = dataSnapshot.getValue().toString().substring(6, dataSnapshot.getValue().toString().length() - 1);
 
+                  //Show and Adapter List
+                  displayArray.add(keyAndValue);
+                  keysArray.add(dataSnapshot.getKey().toString());
+
+                  //Sound
+                  tts.speak(keyAndValue, TextToSpeech.QUEUE_FLUSH, null);
+
                   //Send Notification Every 20 Second
                   FirebaseNotificationUtil firebaseMessaging = new FirebaseNotificationUtil();
                   firebaseMessaging.pushFCMNotificationFallDetection(keyAndValue);
 
             } else {
-                  Log.d(TAG, dataSnapshot.getValue().toString());
+                Log.d(TAG, dataSnapshot.getValue().toString());
+                keyAndValue = "Alert";
+                //Show and Adapter List
+                displayArray.add(keyAndValue);
+                keysArray.add(dataSnapshot.getKey().toString());
             }
-
-            //Show and Adapter List
-            displayArray.add(keyAndValue);
-            keysArray.add(dataSnapshot.getKey().toString());
 
             //Update List View
             updateListView();
@@ -186,5 +200,13 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
             return true;
           }
       return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(new Locale("th"));
+            tts.speak("ระบบแจ้งเตือนการหกล้มสำหรับผู้สูงอายุผ่านสมาร์ทมินเร่อ", TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 }
