@@ -1,7 +1,9 @@
 package com.example.suttipongk.testaboc;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
@@ -32,9 +34,16 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
     @Override
     public void onInt(Bundle savedInstanceState) {
 
+        String MY_DISPLAY_NAME = null;
+        String MY_GET_EMAIL = null;
+
+        SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        String displayName = myPrefs.getString(MY_DISPLAY_NAME, "");
+        String getEmail = myPrefs.getString(MY_GET_EMAIL, "");
+
         // User Information
-        this.userName.setText("Suttipong Kullawattana");            //Name
-        this.userEmail.setText("suttipong.kull@gmail.com");         //E-mail
+        this.userName.setText("");                                  //Name
+        this.userEmail.setText(getEmail);                           //E-mail
         this.userPhoto.setImageResource(R.drawable.ic_top);         //รูป Profile
         this.userBackground.setImageResource(R.drawable.ic_user_background_first);
 

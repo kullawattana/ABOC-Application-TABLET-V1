@@ -1,6 +1,7 @@
 package com.example.suttipongk.testaboc;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -154,6 +155,17 @@ public class LoginOtherAccount extends BaseActivity implements View.OnClickListe
 			mTextViewProfile.setText("Email: " + user.getEmail());
 			mTextViewProfile.append("\n");
 			mTextViewProfile.append("Firebase ID: " + user.getUid());
+
+			//**************************SharedPreferences*******************************
+			String MY_GET_EMAIL = null;
+			String MY_DISPLAY_NAME = null;
+			SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
+			SharedPreferences.Editor prefsEditor = myPrefs.edit();
+			Log.d("abocApp",user.getEmail().substring(0, user.getEmail().indexOf("@")));
+			prefsEditor.putString(MY_DISPLAY_NAME, user.getEmail().substring(0, user.getEmail().indexOf("@")));
+			prefsEditor.putString(MY_GET_EMAIL, user.getEmail());
+			prefsEditor.commit();
+
 		} else {
 			mTextViewProfile.setText(null);
 		}

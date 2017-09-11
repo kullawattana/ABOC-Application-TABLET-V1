@@ -1,6 +1,8 @@
 package com.example.suttipongk.testaboc;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -202,6 +204,17 @@ public class LoginEmailAndPassword extends BaseActivity implements View.OnClickL
 			mTextViewProfile.append("Firebase ID: " + user.getUid());
 			mTextViewProfile.append("\n\n");
 			mTextViewProfile.append("Email Verification: " + user.isEmailVerified());
+
+			//*******************************Save Data***************************************************
+			String MY_DISPLAY_NAME = null;
+			String MY_GET_EMAIL = null;
+
+			SharedPreferences myPrefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+			SharedPreferences.Editor prefsEditor = myPrefs.edit();
+			prefsEditor.putString(MY_DISPLAY_NAME, user.getEmail());
+			prefsEditor.putString(MY_GET_EMAIL, user.getEmail());
+			prefsEditor.commit();
+			//********************************************************************************************
 
 			if (user.isEmailVerified()) {
 				findViewById(R.id.verify_button).setVisibility(View.GONE);

@@ -2,6 +2,7 @@ package com.example.suttipongk.testaboc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -225,6 +226,14 @@ public class LoginGoogle extends BaseActivity implements GoogleApiClient.OnConne
 			mTextViewProfile.append("Email: " + user.getEmail());
 			mTextViewProfile.append("\n\n");
 			mTextViewProfile.append("Firebase ID: " + user.getUid());
+
+			String MY_DISPLAY_NAME = null;
+			String MY_GET_EMAIL = null;
+			SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
+			SharedPreferences.Editor prefsEditor = myPrefs.edit();
+			prefsEditor.putString(MY_DISPLAY_NAME, user.getDisplayName());
+			prefsEditor.putString(MY_GET_EMAIL, user.getEmail());
+			prefsEditor.commit();
 
 			findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 			findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
