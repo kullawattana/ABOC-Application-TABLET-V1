@@ -1,6 +1,7 @@
 package com.example.suttipongk.testaboc;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,60 +20,66 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by TOPPEE on 9/11/2017.
  */
 
-public class MainActivityFirebaseReadDataActivity extends ActionBarActivity implements View.OnClickListener{
+public class MainActivityFirebaseReadDataActivity extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
-  static final String TAG = "MainActivityFirebaseReadDataActivity";
-  static Firebase myFirebaseRef;
+      static final String TAG = "MainActivityFirebaseReadDataActivity";
+      static Firebase myFirebaseRef;
 
-  Button save;
-  EditText nameEditText, surnameEditText;
-  EditText addressEditText;
-  EditText telEditText;
-  EditText emailEditText;
-  EditText elderlyEditText;
-  EditText timeEditText;
+      Button save;
+      EditText nameEditText, surnameEditText;
+      EditText addressEditText;
+      EditText telEditText;
+      EditText emailEditText;
+      EditText elderlyEditText;
+      EditText timeEditText;
 
-  ProgressBar progressBar;
-  ArrayAdapter<String> valuesAdapter;
-  ArrayList<String> displayArray;
-  ArrayList<String> keysArray;
+      ProgressBar progressBar;
+      ArrayAdapter<String> valuesAdapter;
+      ArrayList<String> displayArray;
+      ArrayList<String> keysArray;
 
-  DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+      DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
+      private TextToSpeech tts;
+      protected static final int RESULT_SPEECH = 1;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main_profile_fall_detection);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_profile_fall_detection);
 
-    save = (Button)findViewById(R.id.savedata);
+        save = (Button)findViewById(R.id.savedata);
 
-    //SAVE DATA
-    nameEditText = (EditText)findViewById(R.id.nameprofile);
-    surnameEditText = (EditText)findViewById(R.id.surname);
-    addressEditText = (EditText)findViewById(R.id.address);
-    telEditText = (EditText)findViewById(R.id.tel);
-    emailEditText = (EditText)findViewById(R.id.email);
-    elderlyEditText = (EditText)findViewById(R.id.elderly);
-    timeEditText = (EditText)findViewById(R.id.time);
+        //SAVE DATA
+        nameEditText = (EditText)findViewById(R.id.nameprofile);
+        surnameEditText = (EditText)findViewById(R.id.surname);
+        addressEditText = (EditText)findViewById(R.id.address);
+        telEditText = (EditText)findViewById(R.id.tel);
+        emailEditText = (EditText)findViewById(R.id.email);
+        elderlyEditText = (EditText)findViewById(R.id.elderly);
+        timeEditText = (EditText)findViewById(R.id.time);
 
-    //PROGRESS
-    progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        //PROGRESS
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
-    displayArray  = new ArrayList<>();
-    keysArray = new ArrayList<>();
-    valuesAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,displayArray);
+        displayArray  = new ArrayList<>();
+        keysArray = new ArrayList<>();
+        valuesAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,displayArray);
 
-    Firebase.setAndroidContext(this);
-    myFirebaseRef = new Firebase("https://aboc-afe9a.firebaseio.com");
-    myFirebaseRef.addChildEventListener(childEventListener);
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://aboc-afe9a.firebaseio.com");
+        myFirebaseRef.addChildEventListener(childEventListener);
 
-    save.setOnClickListener(this);
+        save.setOnClickListener(this);
+
+        //Initial Text to Speech
+        tts = new TextToSpeech(this, this, "com.google.android.tts");
 
   }
 
@@ -164,4 +171,12 @@ public class MainActivityFirebaseReadDataActivity extends ActionBarActivity impl
     }
     return super.onOptionsItemSelected(item);
   }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(new Locale("th"));
+            tts.speak("ระบบแก้ไขข้อมูลผู้สูงอายุสำหรับผู้ดูแล", TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
 }

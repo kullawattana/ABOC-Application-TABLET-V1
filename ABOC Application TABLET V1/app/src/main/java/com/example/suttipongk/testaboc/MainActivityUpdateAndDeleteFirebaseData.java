@@ -2,6 +2,7 @@ package com.example.suttipongk.testaboc;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -19,12 +20,13 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by TOPPEE on 9/11/2017.
  */
 
-public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity implements View.OnClickListener{
+public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
       Button save;
       static Firebase myFirebaseRef;
@@ -36,6 +38,9 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
       ArrayList<String> displayArray;
       ArrayList<String> keysArray;
       ListView listView;
+
+      private TextToSpeech tts;
+      protected static final int RESULT_SPEECH = 1;
 
       @Override
       protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,9 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
           myFirebaseRef.addChildEventListener(childEventListener);
 
           save.setOnClickListener(this);
+
+          //Initial Text to Speech
+          tts = new TextToSpeech(this, this, "com.google.android.tts");
       }
 
       private void showProgressBar(){
@@ -186,4 +194,12 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
               }
               return super.onOptionsItemSelected(item);
           }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(new Locale("th"));
+            tts.speak("ระบบบันทึกข้อมูลผู้สูงอายุ", TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
 }
