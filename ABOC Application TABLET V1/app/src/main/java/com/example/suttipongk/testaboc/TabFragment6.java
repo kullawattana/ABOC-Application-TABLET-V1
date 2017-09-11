@@ -16,6 +16,7 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
     private IFragmentToActivity mCallback;
     private ImageButton btnFtoA;
     private ImageButton btnFtoB;
+    private ImageButton btnFtoC;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +29,10 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
         //Select / Update / Delete >>> Data
         btnFtoB = (ImageButton) view.findViewById(R.id.elderlybutton2);
         btnFtoB.setOnClickListener(this);
+
+        //Notification
+        btnFtoC = (ImageButton) view.findViewById(R.id.elderlybutton3);
+        btnFtoC.setOnClickListener(this);
 
         return view;
     }

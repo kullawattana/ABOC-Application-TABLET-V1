@@ -73,6 +73,7 @@
 
         <!-- start google plus login -->
         <activity android:name="com.facebook.FacebookActivity" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -100,26 +101,32 @@
             android:name=".MainActivityLogin"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".LoginEmailAndPassword"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".LoginGoogle"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".LoginFacebook"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".LoginOtherAccount"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".LoginWithPhone"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name=".ManageUserActivity"
             android:screenOrientation="landscape">
@@ -137,9 +144,15 @@
             android:screenOrientation="landscape">
         </activity>
 
-        <!-- Update Data of Firebase -->
+        <!-- Update Notification of Firebase -->
         <activity
             android:name=".MainActivityUpdateNotificationFallDetectionFirebaseData"
+            android:screenOrientation="landscape">
+        </activity>
+
+        <!-- Update Data of Firebase -->
+        <activity
+            android:name=".MainActivityUpdateAndDeleteFirebaseData"
             android:screenOrientation="landscape">
         </activity>
 
@@ -172,38 +185,46 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize">
         </activity>
+
         <activity
             android:name=".FdActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="landscape">
         </activity>
+
         <activity
             android:name="com.folioreader.activity.FolioActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize">
         </activity>
+
         <activity
             android:name=".Homepage"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".BluetoothManager"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".ControlLightManager"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".DeviceListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".ReadingBookManager"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".VideoManager"
             android:label="@string/app_name"

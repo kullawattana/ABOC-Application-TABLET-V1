@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.scanlibrary.ScanActivity;
@@ -30,9 +30,9 @@ import java.util.ArrayList;
 public class MainActivityScanPaper extends ActionBarActivity {
 
     private static final int REQUEST_CODE = 99;
-    private Button scanButton;
-    private Button cameraButton;
-    private Button mediaButton;
+    private ImageButton scanButton;
+    private ImageButton cameraButton;
+    private ImageButton mediaButton;
     private ImageView scannedImageView;
     protected static final int RESULT_SPEECH = 1;
 
@@ -76,11 +76,11 @@ public class MainActivityScanPaper extends ActionBarActivity {
     }
 
     private void init() {
-        scanButton = (Button) findViewById(R.id.scanButton);
+        scanButton = (ImageButton) findViewById(R.id.scanButton);
         scanButton.setOnClickListener(new ScanButtonClickListener());
-        cameraButton = (Button) findViewById(R.id.cameraButton);
+        cameraButton = (ImageButton) findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(new ScanButtonClickListener(ScanConstants.OPEN_CAMERA));
-        mediaButton = (Button) findViewById(R.id.mediaButton);
+        mediaButton = (ImageButton) findViewById(R.id.mediaButton);
         mediaButton.setOnClickListener(new ScanButtonClickListener(ScanConstants.OPEN_MEDIA));
         scannedImageView = (ImageView) findViewById(R.id.scannedImage);
     }

@@ -111,13 +111,20 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
             if(chkKey.equals("Fall")){
                 Log.d(TAG, dataSnapshot.getValue().toString().substring(6, dataSnapshot.getValue().toString().length() - 1));
             } else {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    FirebaseQueryProfile post = postSnapshot.getValue(FirebaseQueryProfile.class);
-                    keyAndValue = post.getMyname() + " " + post.getSurname() + " " + post.getAddress() + " " + post.getTel() + " " + post.getEmailAddress() + " " + post.getTakeCareType() + " " + post.getTimeFallDetection();
+                if(!dataSnapshot.getValue().toString().equals(null)) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        FirebaseQueryProfile post = postSnapshot.getValue(FirebaseQueryProfile.class);
+                        keyAndValue = "Name : " + post.getMyname() + " " + post.getSurname() + " | Address : " + post.getAddress() + " | Tel : " + post.getTel() + " | E-mail : " + post.getEmailAddress() + " | Take Care Type : " + post.getTakeCareType() + " | Time of Fall : " + post.getTimeFallDetection();
+                    }
+                    displayArray.add(keyAndValue);
+                    keysArray.add(dataSnapshot.getKey().toString());
+                } else {
+                    Log.d(TAG, "Nothings");
+                    keyAndValue = "Nothings";
+                    displayArray.add(keyAndValue);
+                    keysArray.add(dataSnapshot.getKey().toString());
                 }
             }
-            displayArray.add(keyAndValue);
-            keysArray.add(dataSnapshot.getKey().toString());
 
             //Update List View
             updateListView();

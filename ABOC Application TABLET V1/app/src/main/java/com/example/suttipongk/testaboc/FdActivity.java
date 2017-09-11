@@ -592,7 +592,7 @@ public class FdActivity extends AppCompatActivity implements SeekBar.OnSeekBarCh
                     if(diffOfX >= 100){
                         Log.w("move", "Left    "+diffOfX);
                         Log.w("move", "isLeft : "+isLeft + "leftCount :"+leftCount);
-                        
+
                         if(isLeft && leftCount == 5){
                             Log.w("move", "--------------left----------------"+pdfFile.getName());
                             display(pdfFile, ++currentPage);        //Page ก่อนหน้า
