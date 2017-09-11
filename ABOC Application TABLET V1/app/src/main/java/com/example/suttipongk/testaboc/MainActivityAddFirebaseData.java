@@ -26,9 +26,9 @@ import java.util.Locale;
  * Created by TOPPEE on 9/11/2017.
  */
 
-public class MainActivityFirebaseReadDataActivity extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
+public class MainActivityAddFirebaseData extends ActionBarActivity implements View.OnClickListener, TextToSpeech.OnInitListener{
 
-      static final String TAG = "MainActivityFirebaseReadDataActivity";
+      static final String TAG = "MainActivityAddFirebaseData";
       static Firebase myFirebaseRef;
 
       Button save;
@@ -176,7 +176,7 @@ public class MainActivityFirebaseReadDataActivity extends ActionBarActivity impl
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             tts.setLanguage(new Locale("th"));
-            tts.speak("ระบบแก้ไขข้อมูลผู้สูงอายุสำหรับผู้ดูแล", TextToSpeech.QUEUE_FLUSH, null);
+            tts.speak("ระบบบันทึกข้อมูลผู้สูงอายุ", TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 }

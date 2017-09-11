@@ -140,7 +140,7 @@
 
         <!-- Data of Firebase -->
         <activity
-            android:name=".MainActivityFirebaseReadDataActivity"
+            android:name=".MainActivityAddFirebaseData"
             android:screenOrientation="landscape">
         </activity>
 

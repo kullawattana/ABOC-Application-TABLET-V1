@@ -199,7 +199,7 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             tts.setLanguage(new Locale("th"));
-            tts.speak("ระบบบันทึกข้อมูลผู้สูงอายุ", TextToSpeech.QUEUE_FLUSH, null);
+            tts.speak("ระบบแก้ไขข้อมูลผู้สูงอายุสำหรับผู้ดูแล", TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 }

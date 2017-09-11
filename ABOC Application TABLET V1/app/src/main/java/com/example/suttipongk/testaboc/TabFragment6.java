@@ -3,14 +3,11 @@ package com.example.suttipongk.testaboc;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-
-import java.util.Locale;
 
 /**
  * Created by TOPPEE on 7/23/2017.
@@ -61,7 +58,7 @@ public class TabFragment6 extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.elderlybutton:
                 mCallback.showToast("Firebase Read Data");
-                Intent mainSaveAndReadDataFirebase = new Intent(getContext(), MainActivityFirebaseReadDataActivity.class);
+                Intent mainSaveAndReadDataFirebase = new Intent(getContext(), MainActivityAddFirebaseData.class);
                 startActivity(mainSaveAndReadDataFirebase);
                 break;
             case R.id.elderlybutton2:

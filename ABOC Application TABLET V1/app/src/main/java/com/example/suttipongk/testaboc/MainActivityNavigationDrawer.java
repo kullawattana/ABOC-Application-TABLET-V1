@@ -152,7 +152,7 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
                     Intent act5 = new Intent(getApplicationContext(),AndroidIOTWebviewActivity.class);
                     startActivity(act5);
                 } else if(mHelpLiveo.get(position).getName().equals("Fall Detection")){
-                    Intent act6 = new Intent(getApplicationContext(),MainActivityFirebaseReadDataActivity.class);
+                    Intent act6 = new Intent(getApplicationContext(),MainActivityAddFirebaseData.class);
                     startActivity(act6);
                 }
                 break;
