@@ -142,8 +142,8 @@ public class FirebaseNotificationUtil {
 
             //HEADER
             JSONObject info = new JSONObject();
-            info.put("title", "ABOC Customer Service");                 //หัวข้อการแจ้งซ่อม
-            info.put("body", "Fall Detection : "+message);                         //หมายเลขคำขอแจ้งซ่อม
+            info.put("title", "ABOC Customer Service");                 
+            info.put("body", "Fall Detection : "+message);                         
             data.put("notification", info);
             data.put("to", "dLAS0EuaQ0M:APA91bEAekX5KKWsL4J4PM_mJO0YWLpjPKczYfjEBcIhWvMvXhrCFWQTqBRN63nM-vMl5WNvIx-fyMVpPnF1HhUIx4m0b7x_dn13fcGcHucNJwxNBJJXUfI8_SkiPjYqRT2MUu8jxRrE");
 
