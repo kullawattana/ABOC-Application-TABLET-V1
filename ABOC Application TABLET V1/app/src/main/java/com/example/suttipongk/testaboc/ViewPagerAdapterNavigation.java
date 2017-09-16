@@ -51,11 +51,12 @@ public class ViewPagerAdapterNavigation extends FragmentPagerAdapter {
             case 5:
                 TabFragment6 tab6 = new TabFragment6();         //PAGE6     //IOT Fall Detection
                 return tab6;
+            case 6:
+                TabFragment7 tab7 = new TabFragment7();         //PAGE6     //Chat Room
+                return tab7;
             default:
                 return null;
         }
-
-        //return mTabs.get(i).getFragment();
     }
 
     @Override

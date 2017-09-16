@@ -2,35 +2,11 @@ package com.example.suttipongk.testaboc;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.util.Log;
-import android.widget.ImageView;
-
-import com.example.suttipongk.util.FirebaseNotificationUtil;
-import com.example.suttipongk.util.QRCodeUtil;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Hashtable;
 import java.util.Locale;
 
 /**
@@ -66,7 +42,7 @@ public class MainActivityAboc extends AppCompatActivity implements TextToSpeech.
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent openStartingPoint = new Intent(getApplicationContext(),MainActivityLogin.class);
+                    Intent openStartingPoint = new Intent(getApplicationContext(),IntroSliderAboc.class);
                     startActivity(openStartingPoint);
                 }
             }

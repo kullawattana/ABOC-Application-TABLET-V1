@@ -24,11 +24,11 @@ public class FirebaseMessaging extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     public static String applicationTag = "Aboc";
 
-    //remoteMessage = รับ Message เข้ามา
+    //remoteMessage = รับ ChatMessage เข้ามา
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        Log.d(TAG, "Notification ChatMessage Body: " + remoteMessage.getNotification().getBody());
         String body = remoteMessage.getNotification().getBody();
         String queueNo = remoteMessage.getData().get("queueNo");
         String nameAndSurname = remoteMessage.getData().get("nameAndSurname");

@@ -16,6 +16,7 @@
         <string name="sent_mail">Sent Mail</string>
         <string name="iot">Internet of Things</string>
         <string name="fall_detection">Fall Detection</string>
+        <string name="chat_room">Chat Room</string>
         <string name="categories">Categories</string>
         <string name="settings">Settings E-Book</string>
         <string name="add">Add</string>
@@ -95,5 +96,24 @@
         <string name="status_sign_in_failed">Sign-in failed</string>
         <string name="instant_validation">(instant validation)</string>
         <string name="firebase_status_fmt">Firebase User: %s</string>
+
+        <!--******************************************** Skip ********************************************-->
+        <string name="app_intro_skip">Skip</string>
+
+        <!--******************************************** CHAT ROOM ********************************************-->
+        <string name="action_leave">Leave</string>
+        <string name="action_send">Send</string>
+        <string name="prompt_message">Message</string>
+        <string name="error_connect">Failed to connect</string>
+
+        <!-- chatMessages -->
+        <string name="message_welcome">Welcome to Socket.IO Chat –</string>
+        <plurals name="message_participants">
+                <item quantity="one">there\'s %d participant</item>
+                <item quantity="other">there are %d participants</item>
+        </plurals>
+        <string name="message_user_joined">%s joined</string>
+        <string name="message_user_left">%s left</string>
+        <string name="user_action_typing">is typing</string>
 
 </resources>

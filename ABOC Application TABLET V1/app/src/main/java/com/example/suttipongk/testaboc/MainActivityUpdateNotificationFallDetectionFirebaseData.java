@@ -68,7 +68,7 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
           tts = new TextToSpeech(this, this, "com.google.android.tts");
       }
 
-        //********************************Handle Message Time Thread***************************************
+        //********************************Handle ChatMessage Time Thread***************************************
         private final Handler handler = new Handler();
 
         private void doTheAutoRefresh() {
@@ -113,7 +113,7 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
             Log.d(TAG, dataSnapshot.getKey() + ":" + dataSnapshot.getValue().toString());
             String keyAndValue = null;
 
-            //Check Message
+            //Check ChatMessage
             String chkKey = dataSnapshot.getValue().toString().substring(1,5);
             Log.d(TAG, chkKey);
             if(chkKey.equals("Fall")){
@@ -160,7 +160,7 @@ public class MainActivityUpdateNotificationFallDetectionFirebaseData extends Act
                 keysArray.remove(removedIndex);
                 displayArray.remove(removedIndex);
 
-                //********************************Remove Handle Message Time Thread After Click List And Remove List***************************************
+                //********************************Remove Handle ChatMessage Time Thread After Click List And Remove List***************************************
                 handler.removeCallbacksAndMessages(null);
 
                 //Update List View

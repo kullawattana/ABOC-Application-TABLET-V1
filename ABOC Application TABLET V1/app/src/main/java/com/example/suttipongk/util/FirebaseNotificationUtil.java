@@ -99,7 +99,7 @@ public class FirebaseNotificationUtil {
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
-                Log.d(applicationTag, "Response Message : " + response);
+                Log.d(applicationTag, "Response ChatMessage : " + response);
                 responsePushFCMNotification = response.toString();
             }
             in.close();
@@ -161,7 +161,7 @@ public class FirebaseNotificationUtil {
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
-                Log.d(applicationTag, "Response Message : " + response);
+                Log.d(applicationTag, "Response ChatMessage : " + response);
                 responsePushFCMNotification = response.toString();
             }
             in.close();

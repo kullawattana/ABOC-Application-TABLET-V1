@@ -24,7 +24,7 @@
         android:layout_height="60dp"
         android:hint="Enter Message"
         android:layout_marginTop="10dp"
-        android:id="@+id/message"
+        android:id="@+id/txtMessage"
         android:layout_below="@+id/name"/>
 
     <Button
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/save"
-        android:layout_below="@+id/message"
+        android:layout_below="@+id/txtMessage"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
 

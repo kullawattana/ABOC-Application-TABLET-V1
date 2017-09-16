@@ -308,7 +308,7 @@ macro( __DETECT_NATIVE_API_LEVEL _var _path )
   set( __ndkApiLevelRegex "^[\t ]*#define[\t ]+__ANDROID_API__[\t ]+([0-9]+)[\t ]*.*$" )
   file( STRINGS ${_path} __apiFileContent REGEX "${__ndkApiLevelRegex}" )
   if( NOT __apiFileContent )
-    message( SEND_ERROR "Could not get Android native API level. Probably you have specified invalid level value, or your copy of NDK/toolchain is broken." )
+    chatMessage( SEND_ERROR "Could not get Android native API level. Probably you have specified invalid level value, or your copy of NDK/toolchain is broken." )
   endif()
   string( REGEX REPLACE "${__ndkApiLevelRegex}" "\\1" ${_var} "${__apiFileContent}" )
   unset( __apiFileContent )
@@ -321,7 +321,7 @@ macro( __DETECT_TOOLCHAIN_MACHINE_NAME _var _root )
     __LIST_FILTER( __gccExePath "^[.].*" )
     list( LENGTH __gccExePath __gccExePathsCount )
     if( NOT __gccExePathsCount EQUAL 1  AND NOT _CMAKE_IN_TRY_COMPILE )
-      message( WARNING "Could not determine machine name for compiler from ${_root}" )
+      chatMessage( WARNING "Could not determine machine name for compiler from ${_root}" )
       set( ${_var} "" )
     else()
       get_filename_component( __gccExeName "${__gccExePath}" NAME_WE )
@@ -341,7 +341,7 @@ set( ANDROID_FORBID_SYGWIN TRUE CACHE BOOL "Prevent cmake from working under cyg
 mark_as_advanced( ANDROID_FORBID_SYGWIN )
 if( ANDROID_FORBID_SYGWIN )
  if( CYGWIN )
-  message( FATAL_ERROR "Android NDK and android-cmake toolchain are not welcome Cygwin. It is unlikely that this cmake toolchain will work under cygwin. But if you want to try then you can set cmake variable ANDROID_FORBID_SYGWIN to FALSE and rerun cmake." )
+  chatMessage( FATAL_ERROR "Android NDK and android-cmake toolchain are not welcome Cygwin. It is unlikely that this cmake toolchain will work under cygwin. But if you want to try then you can set cmake variable ANDROID_FORBID_SYGWIN to FALSE and rerun cmake." )
  endif()
 
  if( CMAKE_HOST_WIN32 )
@@ -372,7 +372,7 @@ elseif( CMAKE_HOST_UNIX )
  set( ANDROID_NDK_HOST_SYSTEM_NAME "linux-x86_64" )
  set( ANDROID_NDK_HOST_SYSTEM_NAME2 "linux-x86" )
 else()
- message( FATAL_ERROR "Cross-compilation on your platform is not supported by this cmake toolchain" )
+ chatMessage( FATAL_ERROR "Cross-compilation on your platform is not supported by this cmake toolchain" )
 endif()
 
 if( NOT ANDROID_NDK_HOST_X64 )
@@ -399,15 +399,15 @@ if( NOT ANDROID_NDK )
   unset( __ndkSearchPaths )
 
   if( ANDROID_NDK )
-   message( STATUS "Using default path for Android NDK: ${ANDROID_NDK}" )
-   message( STATUS "  If you prefer to use a different location, please define a cmake or environment variable: ANDROID_NDK" )
+   chatMessage( STATUS "Using default path for Android NDK: ${ANDROID_NDK}" )
+   chatMessage( STATUS "  If you prefer to use a different location, please define a cmake or environment variable: ANDROID_NDK" )
   else()
    #try to find Android standalone toolchain in one of the the default locations
    __INIT_VARIABLE( ANDROID_STANDALONE_TOOLCHAIN PATH ANDROID_STANDALONE_TOOLCHAIN_SEARCH_PATH )
 
    if( ANDROID_STANDALONE_TOOLCHAIN )
-    message( STATUS "Using default path for standalone toolchain ${ANDROID_STANDALONE_TOOLCHAIN}" )
-    message( STATUS "  If you prefer to use a different location, please define the variable: ANDROID_STANDALONE_TOOLCHAIN" )
+    chatMessage( STATUS "Using default path for standalone toolchain ${ANDROID_STANDALONE_TOOLCHAIN}" )
+    chatMessage( STATUS "  If you prefer to use a different location, please define the variable: ANDROID_STANDALONE_TOOLCHAIN" )
    endif( ANDROID_STANDALONE_TOOLCHAIN )
   endif( ANDROID_NDK )
  endif( NOT ANDROID_STANDALONE_TOOLCHAIN )
@@ -435,7 +435,7 @@ elseif( ANDROID_STANDALONE_TOOLCHAIN )
   string( LENGTH "${ANDROID_STANDALONE_TOOLCHAIN}" __length )
   string( SUBSTRING "${CMAKE_AR}" 0 ${__length} __androidStandaloneToolchainPreviousPath )
   if( NOT __androidStandaloneToolchainPreviousPath STREQUAL ANDROID_STANDALONE_TOOLCHAIN )
-   message( FATAL_ERROR "It is not possible to change path to the Android standalone toolchain on subsequent run." )
+   chatMessage( FATAL_ERROR "It is not possible to change path to the Android standalone toolchain on subsequent run." )
   endif()
   unset( __androidStandaloneToolchainPreviousPath )
   unset( __length )
@@ -444,7 +444,7 @@ elseif( ANDROID_STANDALONE_TOOLCHAIN )
  set( BUILD_WITH_STANDALONE_TOOLCHAIN True )
 else()
  list(GET ANDROID_NDK_SEARCH_PATHS 0 ANDROID_NDK_SEARCH_PATH)
- message( FATAL_ERROR "Could not find neither Android NDK nor Android standalone toolchain.
+ chatMessage( FATAL_ERROR "Could not find neither Android NDK nor Android standalone toolchain.
     You should either set an environment variable:
       export ANDROID_NDK=~/my-android-ndk
     or
@@ -490,7 +490,7 @@ if( BUILD_WITH_ANDROID_NDK )
   string( LENGTH "${ANDROID_NDK_TOOLCHAINS_PATH}" __length )
   string( SUBSTRING "${CMAKE_AR}" 0 ${__length} __androidNdkPreviousPath )
   if( NOT __androidNdkPreviousPath STREQUAL ANDROID_NDK_TOOLCHAINS_PATH )
-   message( FATAL_ERROR "It is not possible to change the path to the NDK on subsequent CMake run. You must remove all generated files from your build folder first.
+   chatMessage( FATAL_ERROR "It is not possible to change the path to the NDK on subsequent CMake run. You must remove all generated files from your build folder first.
    " )
   endif()
   unset( __androidNdkPreviousPath )
@@ -506,7 +506,7 @@ if( BUILD_WITH_STANDALONE_TOOLCHAIN )
  set( __availableToolchains "standalone" )
  __DETECT_TOOLCHAIN_MACHINE_NAME( __availableToolchainMachines "${ANDROID_STANDALONE_TOOLCHAIN}" )
  if( NOT __availableToolchainMachines )
-  message( FATAL_ERROR "Could not determine machine name of your toolchain. Probably your Android standalone toolchain is broken." )
+  chatMessage( FATAL_ERROR "Could not determine machine name of your toolchain. Probably your Android standalone toolchain is broken." )
  endif()
  if( __availableToolchainMachines MATCHES x86_64 )
   set( __availableToolchainArchs "x86_64" )
@@ -566,7 +566,7 @@ macro( __GLOB_NDK_TOOLCHAINS __availableToolchainsVar __availableToolchainsLst _
    else()
     set( __arch "" )
    endif()
-   #message("machine: !${__machine}!\narch: !${__arch}!\nversion: !${__version}!\ntoolchain: !${__toolchain}!\n")
+   #chatMessage("machine: !${__machine}!\narch: !${__arch}!\nversion: !${__version}!\ntoolchain: !${__toolchain}!\n")
    if (__arch)
     list( APPEND __availableToolchainMachines "${__machine}" )
     list( APPEND __availableToolchainArchs "${__arch}" )
@@ -614,7 +614,7 @@ if( BUILD_WITH_ANDROID_NDK )
   endif()
  endif()
  if( NOT __availableToolchains )
-  message( FATAL_ERROR "Could not find any working toolchain in the NDK. Probably your Android NDK is broken." )
+  chatMessage( FATAL_ERROR "Could not find any working toolchain in the NDK. Probably your Android NDK is broken." )
  endif()
 endif()
 
@@ -628,7 +628,7 @@ foreach( __arch ${__uniqToolchainArchNames} )
 endforeach()
 unset( __uniqToolchainArchNames )
 if( NOT ANDROID_SUPPORTED_ABIS )
- message( FATAL_ERROR "No one of known Android ABIs is supported by this cmake toolchain." )
+ chatMessage( FATAL_ERROR "No one of known Android ABIs is supported by this cmake toolchain." )
 endif()
 
 # choose target ABI
@@ -637,7 +637,7 @@ __INIT_VARIABLE( ANDROID_ABI VALUES ${ANDROID_SUPPORTED_ABIS} )
 list( FIND ANDROID_SUPPORTED_ABIS "${ANDROID_ABI}" __androidAbiIdx )
 if( __androidAbiIdx EQUAL -1 )
  string( REPLACE ";" "\", \"" PRINTABLE_ANDROID_SUPPORTED_ABIS  "${ANDROID_SUPPORTED_ABIS}" )
- message( FATAL_ERROR "Specified ANDROID_ABI = \"${ANDROID_ABI}\" is not supported by this cmake toolchain or your NDK/toolchain.
+ chatMessage( FATAL_ERROR "Specified ANDROID_ABI = \"${ANDROID_ABI}\" is not supported by this cmake toolchain or your NDK/toolchain.
    Supported values are: \"${PRINTABLE_ANDROID_SUPPORTED_ABIS}\"
    " )
 endif()
@@ -721,7 +721,7 @@ elseif( ANDROID_ABI STREQUAL "armeabi-v7a-hard with NEON" )
  set( VFPV3 true )
  set( NEON true )
 else()
- message( SEND_ERROR "Unknown ANDROID_ABI=\"${ANDROID_ABI}\" is specified." )
+ chatMessage( SEND_ERROR "Unknown ANDROID_ABI=\"${ANDROID_ABI}\" is specified." )
 endif()
 
 if( CMAKE_BINARY_DIR AND EXISTS "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeSystem.cmake" )
@@ -745,12 +745,12 @@ if( ANDROID_TOOLCHAIN_NAME )
   list( SORT __availableToolchains )
   string( REPLACE ";" "\n  * " toolchains_list "${__availableToolchains}" )
   set( toolchains_list "  * ${toolchains_list}")
-  message( FATAL_ERROR "Specified toolchain \"${ANDROID_TOOLCHAIN_NAME}\" is missing in your NDK or broken. Please verify that your NDK is working or select another compiler toolchain.
+  chatMessage( FATAL_ERROR "Specified toolchain \"${ANDROID_TOOLCHAIN_NAME}\" is missing in your NDK or broken. Please verify that your NDK is working or select another compiler toolchain.
 To configure the toolchain set CMake variable ANDROID_TOOLCHAIN_NAME to one of the following values:\n${toolchains_list}\n" )
  endif()
  list( GET __availableToolchainArchs ${__toolchainIdx} __toolchainArch )
  if( NOT __toolchainArch STREQUAL ANDROID_ARCH_NAME )
-  message( SEND_ERROR "Selected toolchain \"${ANDROID_TOOLCHAIN_NAME}\" is not able to compile binaries for the \"${ANDROID_ARCH_NAME}\" platform." )
+  chatMessage( SEND_ERROR "Selected toolchain \"${ANDROID_TOOLCHAIN_NAME}\" is not able to compile binaries for the \"${ANDROID_ARCH_NAME}\" platform." )
  endif()
 else()
  set( __toolchainIdx -1 )
@@ -775,7 +775,7 @@ else()
 endif()
 unset( __toolchainArch )
 if( __toolchainIdx EQUAL -1 )
- message( FATAL_ERROR "No one of available compiler toolchains is able to compile for ${ANDROID_ARCH_NAME} platform." )
+ chatMessage( FATAL_ERROR "No one of available compiler toolchains is able to compile for ${ANDROID_ARCH_NAME} platform." )
 endif()
 list( GET __availableToolchains ${__toolchainIdx} ANDROID_TOOLCHAIN_NAME )
 list( GET __availableToolchainMachines ${__toolchainIdx} ANDROID_TOOLCHAIN_MACHINE_NAME )
@@ -799,19 +799,19 @@ foreach( __level ${ANDROID_SUPPORTED_NATIVE_API_LEVELS} )
  endif()
 endforeach()
 if( __real_api_level AND NOT ANDROID_NATIVE_API_LEVEL STREQUAL __real_api_level )
- message( STATUS "Adjusting Android API level 'android-${ANDROID_NATIVE_API_LEVEL}' to 'android-${__real_api_level}'")
+ chatMessage( STATUS "Adjusting Android API level 'android-${ANDROID_NATIVE_API_LEVEL}' to 'android-${__real_api_level}'")
  set( ANDROID_NATIVE_API_LEVEL ${__real_api_level} )
 endif()
 unset(__real_api_level)
 # validate
 list( FIND ANDROID_SUPPORTED_NATIVE_API_LEVELS "${ANDROID_NATIVE_API_LEVEL}" __levelIdx )
 if( __levelIdx EQUAL -1 )
- message( SEND_ERROR "Specified Android native API level 'android-${ANDROID_NATIVE_API_LEVEL}' is not supported by your NDK/toolchain." )
+ chatMessage( SEND_ERROR "Specified Android native API level 'android-${ANDROID_NATIVE_API_LEVEL}' is not supported by your NDK/toolchain." )
 else()
  if( BUILD_WITH_ANDROID_NDK )
   __DETECT_NATIVE_API_LEVEL( __realApiLevel "${ANDROID_NDK}/platforms/android-${ANDROID_NATIVE_API_LEVEL}/arch-${ANDROID_ARCH_NAME}/usr/include/android/api-level.h" )
   if( NOT __realApiLevel EQUAL ANDROID_NATIVE_API_LEVEL AND NOT __realApiLevel GREATER 9000 )
-   message( SEND_ERROR "Specified Android API level (${ANDROID_NATIVE_API_LEVEL}) does not match to the level found (${__realApiLevel}). Probably your copy of NDK is broken." )
+   chatMessage( SEND_ERROR "Specified Android API level (${ANDROID_NATIVE_API_LEVEL}) does not match to the level found (${__realApiLevel}). Probably your copy of NDK is broken." )
   endif()
   unset( __realApiLevel )
  endif()
@@ -843,7 +843,7 @@ mark_as_advanced( ANDROID_STL ANDROID_STL_FORCE_FEATURES )
 
 if( BUILD_WITH_ANDROID_NDK )
  if( NOT "${ANDROID_STL}" MATCHES "^(none|system|system_re|gabi\\+\\+_static|gabi\\+\\+_shared|stlport_static|stlport_shared|gnustl_static|gnustl_shared)$")
-  message( FATAL_ERROR "ANDROID_STL is set to invalid value \"${ANDROID_STL}\".
+  chatMessage( FATAL_ERROR "ANDROID_STL is set to invalid value \"${ANDROID_STL}\".
 The possible values are:
   none           -> Do not configure the runtime.
   system         -> Use the default minimal system C++ runtime library.
@@ -858,7 +858,7 @@ The possible values are:
  endif()
 elseif( BUILD_WITH_STANDALONE_TOOLCHAIN )
  if( NOT "${ANDROID_STL}" MATCHES "^(none|gnustl_static|gnustl_shared)$")
-  message( FATAL_ERROR "ANDROID_STL is set to invalid value \"${ANDROID_STL}\".
+  chatMessage( FATAL_ERROR "ANDROID_STL is set to invalid value \"${ANDROID_STL}\".
 The possible values are:
   none           -> Do not configure the runtime.
   gnustl_static  -> (default) Use the GNU STL as a static library.
@@ -874,13 +874,13 @@ unset( __libstl )
 unset( __libsupcxx )
 
 if( NOT _CMAKE_IN_TRY_COMPILE AND ANDROID_NDK_RELEASE STREQUAL "r7b" AND ARMEABI_V7A AND NOT VFPV3 AND ANDROID_STL MATCHES "gnustl" )
- message( WARNING  "The GNU STL armeabi-v7a binaries from NDK r7b can crash non-NEON devices. The files provided with NDK r7b were not configured properly, resulting in crashes on Tegra2-based devices and others when trying to use certain floating-point functions (e.g., cosf, sinf, expf).
+ chatMessage( WARNING  "The GNU STL armeabi-v7a binaries from NDK r7b can crash non-NEON devices. The files provided with NDK r7b were not configured properly, resulting in crashes on Tegra2-based devices and others when trying to use certain floating-point functions (e.g., cosf, sinf, expf).
 You are strongly recommended to switch to another NDK release.
 " )
 endif()
 
 if( NOT _CMAKE_IN_TRY_COMPILE AND X86 AND ANDROID_STL MATCHES "gnustl" AND ANDROID_NDK_RELEASE STREQUAL "r6" )
-  message( WARNING  "The x86 system header file from NDK r6 has incorrect definition for ptrdiff_t. You are recommended to upgrade to a newer NDK release or manually patch the header:
+  chatMessage( WARNING  "The x86 system header file from NDK r6 has incorrect definition for ptrdiff_t. You are recommended to upgrade to a newer NDK release or manually patch the header:
 See https://android.googlesource.com/platform/development.git f907f4f9d4e56ccc8093df6fee54454b8bcab6c2
   diff --git a/ndk/platforms/android-9/arch-x86/include/machine/_types.h b/ndk/platforms/android-9/arch-x86/include/machine/_types.h
   index 5e28c64..65892a1 100644
@@ -935,7 +935,7 @@ if( BUILD_WITH_STANDALONE_TOOLCHAIN )
    set( __libstl    "${__libstl}/libstdc++.a" )
   endif()
   if( NOT EXISTS "${__libsupcxx}" )
-   message( FATAL_ERROR "The required libstdsupc++.a is missing in your standalone toolchain.
+   chatMessage( FATAL_ERROR "The required libstdsupc++.a is missing in your standalone toolchain.
  Usually it happens because of bug in make-standalone-toolchain.sh script from NDK r7, r7b and r7c.
  You need to either upgrade to newer NDK or manually copy
      $ANDROID_NDK/sources/cxx-stl/gnu-libstdc++/libs/${ANDROID_NDK_ABI_NAME}/libsupc++.a
@@ -964,7 +964,7 @@ elseif( "${ANDROID_TOOLCHAIN_NAME}" MATCHES "-clang3[.][0-9]?$" )
  string( REGEX MATCH "3[.][0-9]$" ANDROID_CLANG_VERSION "${ANDROID_TOOLCHAIN_NAME}")
  string( REGEX REPLACE "-clang${ANDROID_CLANG_VERSION}$" "-${ANDROID_COMPILER_VERSION}" ANDROID_GCC_TOOLCHAIN_NAME "${ANDROID_TOOLCHAIN_NAME}" )
  if( NOT EXISTS "${ANDROID_NDK_TOOLCHAINS_PATH}/llvm-${ANDROID_CLANG_VERSION}${ANDROID_NDK_TOOLCHAINS_SUBPATH}/bin/clang${TOOL_OS_SUFFIX}" )
-  message( FATAL_ERROR "Could not find the Clang compiler driver" )
+  chatMessage( FATAL_ERROR "Could not find the Clang compiler driver" )
  endif()
  set( ANDROID_COMPILER_IS_CLANG 1 )
  set( ANDROID_CLANG_TOOLCHAIN_ROOT "${ANDROID_NDK_TOOLCHAINS_PATH}/llvm-${ANDROID_CLANG_VERSION}${ANDROID_NDK_TOOLCHAINS_SUBPATH}" )
@@ -996,7 +996,7 @@ if( BUILD_WITH_ANDROID_NDK )
   set( ANDROID_STL_INCLUDE_DIRS "${ANDROID_NDK}/sources/cxx-stl/system/include" )
  elseif( ANDROID_STL MATCHES "gabi" )
   if( ANDROID_NDK_RELEASE_NUM LESS 7000 ) # before r7
-   message( FATAL_ERROR "gabi++ is not available in your NDK. You have to upgrade to NDK r7 or newer to use gabi++.")
+   chatMessage( FATAL_ERROR "gabi++ is not available in your NDK. You have to upgrade to NDK r7 or newer to use gabi++.")
   endif()
   set( ANDROID_RTTI             ON )
   set( ANDROID_EXCEPTIONS       OFF )
@@ -1036,7 +1036,7 @@ if( BUILD_WITH_ANDROID_NDK )
    set( __libstl                "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/libstdc++.a" )
   endif()
  else()
-  message( FATAL_ERROR "Unknown runtime: ${ANDROID_STL}" )
+  chatMessage( FATAL_ERROR "Unknown runtime: ${ANDROID_STL}" )
  endif()
  # find libsupc++.a - rtti & exceptions
  if( ANDROID_STL STREQUAL "system_re" OR ANDROID_STL MATCHES "gnustl" )
@@ -1058,7 +1058,7 @@ if( BUILD_WITH_ANDROID_NDK )
    endif()
   endif()
   if( NOT EXISTS "${__libsupcxx}")
-   message( ERROR "Could not find libsupc++.a for a chosen platform. Either your NDK is not supported or is broken.")
+   chatMessage( ERROR "Could not find libsupc++.a for a chosen platform. Either your NDK is not supported or is broken.")
   endif()
  endif()
 endif()
@@ -1127,7 +1127,7 @@ endif()
 if( APPLE )
  find_program( CMAKE_INSTALL_NAME_TOOL NAMES install_name_tool )
  if( NOT CMAKE_INSTALL_NAME_TOOL )
-  message( FATAL_ERROR "Could not find install_name_tool, please check your installation." )
+  chatMessage( FATAL_ERROR "Could not find install_name_tool, please check your installation." )
  endif()
  mark_as_advanced( CMAKE_INSTALL_NAME_TOOL )
 endif()
@@ -1193,7 +1193,7 @@ if( ANDROID_SYSROOT MATCHES "[ ;\"]" )
  endif()
  if( NOT _CMAKE_IN_TRY_COMPILE )
   # quotes can break try_compile and compiler identification
-  message(WARNING "Path to your Android NDK (or toolchain) has non-alphanumeric symbols.\nThe build might be broken.\n")
+  chatMessage(WARNING "Path to your Android NDK (or toolchain) has non-alphanumeric symbols.\nThe build might be broken.\n")
  endif()
 else()
  set( ANDROID_CXX_FLAGS "--sysroot=${ANDROID_SYSROOT}" )
@@ -1379,7 +1379,7 @@ if( ANDROID_COMPILER_VERSION VERSION_EQUAL "4.6" )
  elseif( ANDROID_NDK_RELEASE_NUM GREATER 8002 ) # after r8b
   set( ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS} -fuse-ld=bfd" )
  elseif( ANDROID_NDK_RELEASE STREQUAL "r8b" AND ARMEABI AND NOT _CMAKE_IN_TRY_COMPILE )
-  message( WARNING "The default bfd linker from arm GCC 4.6 toolchain can fail with 'unresolvable R_ARM_THM_CALL relocation' error message. See https://code.google.com/p/android/issues/detail?id=35342
+  chatMessage( WARNING "The default bfd linker from arm GCC 4.6 toolchain can fail with 'unresolvable R_ARM_THM_CALL relocation' error chatMessage. See https://code.google.com/p/android/issues/detail?id=35342
   On Linux and OS X host platform you can workaround this problem using gold linker (default).
   Rerun cmake with -DANDROID_GOLD_LINKER=ON option in case of problems.
 " )
@@ -1534,7 +1534,7 @@ if( NOT _CMAKE_IN_TRY_COMPILE AND __libstl MATCHES "[.]so$" AND DEFINED LIBRARY_
   get_filename_component( __libstlname "${__libstl}" NAME )
   execute_process( COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${__libstl}" "${LIBRARY_OUTPUT_PATH}/${__libstlname}" RESULT_VARIABLE __fileCopyProcess )
   if( NOT __fileCopyProcess EQUAL 0 OR NOT EXISTS "${LIBRARY_OUTPUT_PATH}/${__libstlname}")
-    message( SEND_ERROR "Failed copying of ${__libstl} to the ${LIBRARY_OUTPUT_PATH}/${__libstlname}" )
+    chatMessage( SEND_ERROR "Failed copying of ${__libstl} to the ${LIBRARY_OUTPUT_PATH}/${__libstlname}" )
   endif()
   unset( __fileCopyProcess )
   unset( __libstlname )

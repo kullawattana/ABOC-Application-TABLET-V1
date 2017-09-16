@@ -49,7 +49,7 @@ public class MainActivityUpdateAndDeleteFirebaseData extends ActionBarActivity i
 
           save = (Button)findViewById(R.id.save);
           nameEditText = (EditText)findViewById(R.id.name);
-          messageEditText= (EditText)findViewById(R.id.message);
+          messageEditText= (EditText)findViewById(R.id.txtMessage);
           progressBar = (ProgressBar)findViewById(R.id.progressBar);
           listView = (ListView)findViewById(R.id.listView);
 
