@@ -69,3 +69,17 @@
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Notification_Firebase_Service_ABOC.jpg)
 
 ![img](https://github.com/kullawattana/ABOC-Application-TABLET-V1/blob/master/Screenshots%20on%20Mobile/Notification_ABOC.jpg)
+
+## Experience in contest 
+- Popcorn Innovation Business Plan: Turn Idea to Entrepreneur by True Lab. Winner of 50,000 Baht from LongArnDu by True Corporation Public Company Limited. 
+- Young Technopreneur Finalist 2017 from LongArnDu, organized by National Science and Technology Development Agency (NSTDA) in cooperation with Samart Corporation Plc. 
+- First Runner Up of DEPA Internet of Things 2017 Smart Living Program, organized by Digital Economy Promotion Agency in association with Total Access Communication Public Company Limited (DTAC)
+
+## Contact Us... 
+- Website : www.longarndu.com 
+- Landing Page : https://suttipongkull.wixsite.com/abocapplication 
+- Facebook : https://www.facebook.com/longtumdoCompany 
+- Twitter : https://twitter.com/longtumdocomp 
+- Instagram : https://www.instagram.com/longtumdo/ 
+- LinkedIn : https://www.linkedin.com/company-beta/13410538 
+- Youtube : https://www.youtube.com/channel/UC2ZkcxLy7shYmIDC7rJZV0w
