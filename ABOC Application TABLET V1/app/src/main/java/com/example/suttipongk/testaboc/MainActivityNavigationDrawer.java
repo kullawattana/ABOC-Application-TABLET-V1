@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
@@ -131,12 +132,12 @@ public class MainActivityNavigationDrawer extends NavigationLiveo implements OnI
 
     @Override
     public void onItemClick(int position) {
-        Fragment mFragment;
+        MainFragmentNavigationDrawer mFragment;
         FragmentManager mFragmentManager = getSupportFragmentManager();
 
         switch (position){
             case 2:
-                mFragment = new ViewPagerFragmentNavigationDrawer();
+                mFragment = new MainFragmentNavigationDrawer();
                 break;
 
             default:

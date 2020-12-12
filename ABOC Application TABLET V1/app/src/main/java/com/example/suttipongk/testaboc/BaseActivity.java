@@ -1,7 +1,8 @@
 package com.example.suttipongk.testaboc;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by TOPPEE on 9/11/2017.

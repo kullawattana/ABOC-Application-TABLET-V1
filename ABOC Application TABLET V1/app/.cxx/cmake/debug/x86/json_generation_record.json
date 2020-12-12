@@ -1,0 +1,200 @@
+[
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 16 min SDK version: x86",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "No CMake version was specified in build.gradle. Using default version 3.10.2.",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "Trying to locate CMake in local SDK repository.",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- CMake found in SDK at \u0027/Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404\u0027 had version \u00273.10.2\u0027",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "CMake \u00273.6.0\u0027 found in SDK did not match requested version \u00273.10.2\u0027.",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "rebuilding JSON /Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86/android_gradle_build.json due to:",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- expected json /Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86/android_gradle_build.json file is not present, will remove stale json folder",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- missing previous command file /Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86/build_command.txt, will remove stale json folder",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86\u0027",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86\u0027",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "executing cmake Executable : /Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake\narguments : \n-H/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp\n-DCMAKE_CXX_FLAGS\u003d-frtti -fexceptions\n-DCMAKE_FIND_ROOT_PATH\u003d/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/prefab/x86/prefab\n-DCMAKE_BUILD_TYPE\u003dDebug\n-DCMAKE_TOOLCHAIN_FILE\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake\n-DANDROID_ABI\u003dx86\n-DANDROID_NDK\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DCMAKE_ANDROID_NDK\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/build/intermediates/cmake/debug/obj/x86\n-DCMAKE_MAKE_PROGRAM\u003d/Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_SYSTEM_VERSION\u003d16\n-DANDROID_PLATFORM\u003dandroid-13\n-DANDROID_TOOLCHAIN\u003dclang\n-DANDROID_STL\u003dgnustl_static\n-B/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86\n-GNinja\njvmArgs : \n\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "[\u003d\u003d \"CMake Server\" \u003d\u003d[\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "]\u003d\u003d \"CMake Server\" \u003d\u003d]\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp\",\n  \"buildDirectory\": \"/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/x86\",\n  \"generator\": \"Ninja\"\n}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"gradle-cmake-cookie\",\"inReplyTo\":\"handshake\",\"type\":\"reply\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_CXX_FLAGS\\u003d-frtti -fexceptions\",\n    \"-DCMAKE_FIND_ROOT_PATH\\u003d/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/.cxx/cmake/debug/prefab/x86/prefab\",\n    \"-DCMAKE_BUILD_TYPE\\u003dDebug\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake\",\n    \"-DANDROID_ABI\\u003dx86\",\n    \"-DANDROID_NDK\\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003dx86\",\n    \"-DCMAKE_ANDROID_NDK\\u003d/Users/toppee/Library/Android/sdk/ndk/21.0.6113669\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003d/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/build/intermediates/cmake/debug/obj/x86\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003d/Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d16\",\n    \"-DANDROID_PLATFORM\\u003dandroid-13\",\n    \"-DANDROID_TOOLCHAIN\\u003dclang\",\n    \"-DANDROID_STL\\u003dgnustl_static\"\n  ]\n}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"android-13 is unsupported. Using minimum supported version 16.\",\"type\":\"message\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "android-13 is unsupported. Using minimum supported version 16.",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Error at /Users/toppee/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake:250 (message):\\n  gnustl_static is no longer supported.  Please switch to either c++_shared\\n  or c++_static.  See\\n  https://developer.android.com/ndk/guides/cpp-support.html for more\\n  information.\\nCall Stack (most recent call first):\\n  /Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\\n  CMakeLists.txt\\n\\n\",\"title\":\"Error\",\"type\":\"message\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "ERROR",
+    "message": "CMake Error at /Users/toppee/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake:250 (message):\n  gnustl_static is no longer supported.  Please switch to either c++_shared\n  or c++_static.  See\n  https://developer.android.com/ndk/guides/cpp-support.html for more\n  information.\nCall Stack (most recent call first):\n  /Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\n  CMakeLists.txt\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage\",\"title\":\"Error\",\"type\":\"message\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "ERROR",
+    "message": "CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage\",\"title\":\"Error\",\"type\":\"message\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "ERROR",
+    "message": "CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Configuring incomplete, errors occurred!\",\"type\":\"message\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "Configuring incomplete, errors occurred!",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "{\"cookie\":\"\",\"errorMessage\":\"Configuration failed.\",\"inReplyTo\":\"configure\",\"type\":\"error\"}\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "ERROR",
+    "message": "Configuration failed.",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed with problem. Exception: com.android.ide.common.process.ProcessException: Error configuring CMake server (/Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/bin).\r\nandroid-13 is unsupported. Using minimum supported version 16.\nCMake Error at /Users/toppee/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake:250 (message):\n  gnustl_static is no longer supported.  Please switch to either c++_shared\n  or c++_static.  See\n  https://developer.android.com/ndk/guides/cpp-support.html for more\n  information.\nCall Stack (most recent call first):\n  /Users/toppee/Library/Android/sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\n  CMakeLists.txt\n\n\nCMake Error: CMAKE_C_COMPILER not set, after EnableLanguage\nCMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage\nConfiguring incomplete, errors occurred!\n",
+    "file": "/Users/toppee/ABOC-Application-TABLET-V1/ABOC Application TABLET V1/app/src/main/cpp/CMakeLists.txt",
+    "tag": "debug|x86"
+  }
+]

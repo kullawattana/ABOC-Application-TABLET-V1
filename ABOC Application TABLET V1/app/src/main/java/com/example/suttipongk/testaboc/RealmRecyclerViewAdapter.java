@@ -1,6 +1,6 @@
 package com.example.suttipongk.testaboc;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import io.realm.RealmBaseAdapter;
 import io.realm.RealmObject;

@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ABOC Application TABLET V1.iml" filepath="$PROJECT_DIR$/ABOC Application TABLET V1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ABOC Application TABLET V1-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ABOC Application TABLET V1-app.iml" group="ABOC Application TABLET V1/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary249/ABOC Application TABLET V1-openCVLibrary249.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary249/ABOC Application TABLET V1-openCVLibrary249.iml" group="ABOC Application TABLET V1/openCVLibrary249" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scanlibrary/ABOC Application TABLET V1-scanlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/scanlibrary/ABOC Application TABLET V1-scanlibrary.iml" group="ABOC Application TABLET V1/scanlibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ABOC_Application_TABLET_V1.iml" filepath="$PROJECT_DIR$/.idea/modules/ABOC_Application_TABLET_V1.iml" group="ABOC_Application_TABLET_V1" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary249/openCVLibrary249.iml" filepath="$PROJECT_DIR$/openCVLibrary249/openCVLibrary249.iml" />
       <module fileurl="file://$PROJECT_DIR$/scanlibrary/scanlibrary.iml" filepath="$PROJECT_DIR$/scanlibrary/scanlibrary.iml" />

@@ -1,9 +1,7 @@
 package com.example.suttipongk.testaboc;
 
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatSeekBar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -47,6 +45,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import android.speech.tts.TextToSpeech;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSeekBar;
 
 /**
  * Created by TOPPEE on 7/23/2017.

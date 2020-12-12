@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
