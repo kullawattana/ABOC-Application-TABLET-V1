@@ -1,6 +1,6 @@
 package com.example.suttipongk.testaboc;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by TOPPEE on 7/23/2017.
